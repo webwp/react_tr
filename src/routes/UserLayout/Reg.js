@@ -62,6 +62,7 @@ class Index extends Component {
     hadleGetCode = (e)=>{
       const  phone =this.props.form.getFieldProps('phone').value;
       const thisDom = e.target;
+      
       if(phone!=''){
           const { dispatch } = this.props;
           dispatch({
@@ -87,6 +88,7 @@ class Index extends Component {
       
     }
     render(){
+      localStorage.setItem('UTRAFF','')
         let errors;
         const { getFieldProps,getFieldError } = this.props.form;
         const {app} = this.props;

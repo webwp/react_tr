@@ -52,7 +52,7 @@ export default {
                 if (response.code == 'SUCCESS') {
                     nPayload.userInfo = response.data;
                     nPayload.authLoading=true;
-                    localStorage.setItem('UTRAFF', response.data);
+                    //localStorage.setItem('UTRAFF', response.data);
                 }
                 yield put({
                     type: 'save',
@@ -83,6 +83,7 @@ export default {
                 
             },
             *code({ payload },{ call,put }){
+                console.log(payload);
                 const response = yield call(getCode, payload);
             },
             *logout({ payload }, { call, put }) {

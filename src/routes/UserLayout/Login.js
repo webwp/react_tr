@@ -14,12 +14,13 @@ const AgreeItem = Checkbox.AgreeItem;
 class Index extends Component {
     submit = () => {
         this.props.form.validateFields((error, value) => {
+          console.log(error,value)
           const { dispatch } = this.props;
           dispatch({
             type: 'app/login',
             payload: {
               ...value
-            },
+            }
           });
         });
     }

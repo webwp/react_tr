@@ -34,6 +34,7 @@ export default function request(url, options) {
     }};
     return axios.get(url,typeOfFun)
     .then(function(response){
+      console.log(response);
       return response.data;
     })
     .catch(function(err){
@@ -56,7 +57,7 @@ export default function request(url, options) {
     })
     .catch(function(err){
       console.log(err);
-      const {status, data} = err.response || {};
+      const {data} = err.response || {};
       return data;
     });
   }

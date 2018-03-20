@@ -6,6 +6,12 @@ const myImg = src => <img src={src} style={{'height':'60px','width':'60px'}} cla
 
 
 class Index extends Component{
+    constructor(){
+        super();
+        this.state={
+            phone:'10000000'
+        }
+    }
     handleuUserLogout = ()=>{
         const { dispatch } = this.props;
         dispatch({
@@ -13,14 +19,23 @@ class Index extends Component{
             payload:''
         })
     }
+    componentWillMount(){
+        console.dir(this.props)
+        const { app } = this.props;
+        const { userInfo } = app;
+        if(userInfo!=null){
+            this.setState({
+                phone:userInfo.phone
+            })
+        }
+    }
     render(){
         const { profile } = this.props;
-        //console.dir(this.props)
         return(
             <div className="result-example">
                 <Result
                 img={myImg('../src/assets/user_1206721_easyicon.net.svg')}
-                title={"用户名:"+this.props.app.userInfo.phone}
+                title={"用户名:"+this.state.phone}
                 message=""
                 />
                 <List renderHeader={() => '用户信息'}>
