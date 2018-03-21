@@ -9,8 +9,7 @@ import User from '../../components/User';
 class Index extends Component{
     render(){
         const { userInfo } = this.props.app;
-        console.log("userInfo:",userInfo);
-        if(userInfo===null){
+        if(userInfo == null || userInfo == ''){
             return <Redirect to='/login' />;
         }
         return(

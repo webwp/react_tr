@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { Button,Result, Icon, WhiteSpace,List } from 'antd-mobile';
+import { Modal, WingBlank, Toast } from 'antd-mobile';
 
 const Item = List.Item;
 const myImg = src => <img src={src} style={{'height':'60px','width':'60px'}} className="spe am-icon am-icon-md" alt="" />;
@@ -20,17 +21,15 @@ class Index extends Component{
         })
     }
     componentWillMount(){
-        console.dir(this.props)
         const { app } = this.props;
         const { userInfo } = app;
-        if(userInfo!=null){
+        if(userInfo !=null || userInfo != ''){
             this.setState({
                 phone:userInfo.phone
             })
         }
     }
     render(){
-        const { profile } = this.props;
         return(
             <div className="result-example">
                 <Result

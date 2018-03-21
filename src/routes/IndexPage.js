@@ -1,11 +1,11 @@
 import React , {Component} from "react";
 
-import { TabBar } from 'antd-mobile';
-import Index from './Index';
-import {connect} from 'dva';
+import { TabBar,NavBar, Icon } from 'antd-mobile';
+import { Redirect, Route, Switch } from 'dva/router';
+import { connect } from 'dva';
 import User from './UserLayout/User';
-import {Redirect, Route, Switch} from 'dva/router';
-import { NavBar, Icon } from 'antd-mobile';
+import Index from './Index';
+import Ex from './ex';
 
 
 // @connect(state=>({
@@ -32,20 +32,7 @@ class TabBarExample extends Component {
       </div>
     );
   }
-
-  componentWillMount(){
-    const userInfo = localStorage.getItem('UTRAFF');
-    if(userInfo){
-        //this.setState({userInfo:JSON.parse(userInfo)});
-    }
-  }
-
   render() {
-    if(!this.state.userInfo){
-        //return <Switch><Redirect to="/login"/></Switch>
-    }else{
-        return <Switch><Redirect to="/"/></Switch>
-    }
     return (
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { position: 'fixed', height: '100%', width: '100%', top: 0 }}>
         <TabBar
@@ -117,13 +104,14 @@ class TabBarExample extends Component {
           <NavBar
               mode="dark"
               icon={<Icon type="home" />}
-              // onLeftClick={() => console.log('onLeftClick')}
-              // rightContent={[
-              //   <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-              //   <Icon key="1" type="ellipsis" />,
-              // ]}
+              onLeftClick={() => console.log('onLeftClick')}
+              rightContent={[
+                <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+                <Icon key="1" type="ellipsis" />,
+              ]}
           >模块1</NavBar>
-          <Index />
+          <Ex />
+          {this.renderContent('Life')}
            
           </TabBar.Item>
           <TabBar.Item

@@ -1,5 +1,8 @@
 import { userLogin,userReg,getCode,userLogout } from '../services/api';
 import { routerRedux,Redirect,Switch } from 'dva/router';
+import { Toast } from 'antd-mobile';
+
+
 
 export default {
     
@@ -11,7 +14,8 @@ export default {
             loading: true,
             authLoading: false,
             profile: null,
-            isLogin:false
+            isLogin:false,
+            r_errors:''
         },
     
         subscriptions: {
@@ -45,14 +49,15 @@ export default {
             *reg({ payload },{ call, put }){
                 yield put({
                     type: 'save',
-                    payload: {authLoading: true},
+                    payload: {authLoading: false},
                 });
+                Toast.loading('',0)
                 const response = yield call(userReg, payload);
                 let nPayload = {authLoading: false};
                 if (response.code == 'SUCCESS') {
+                    Toast.hide();
                     nPayload.userInfo = response.data;
                     nPayload.authLoading=true;
-                    //localStorage.setItem('UTRAFF', response.data);
                 }
                 yield put({
                     type: 'save',
@@ -60,10 +65,13 @@ export default {
                 });
             },
             *login({ payload }, { call, put }) {
-                const response = yield call(userLogin,payload);
                 
+                Toast.loading('',0);
+                const response = yield call(userLogin,payload);
                 let nPayload = {};
                 if(response.code === 'SUCCESS'){
+                    
+                    Toast.hide();
                     nPayload.isLogin = true;
                     nPayload.userInfo = response.data.profile;
                     localStorage.setItem('UTRAFF', JSON.stringify(response.data.profile));
@@ -74,6 +82,9 @@ export default {
                     })
                     yield put(routerRedux.push('/'));
                 }else{
+                    //返回错误信息  r_errors
+                    nPayload.r_errors = response.errors;
+                    nPayload.r_IS;
                     yield put({
                         type:'save',
                         payload:nPayload
@@ -83,10 +94,15 @@ export default {
                 
             },
             *code({ payload },{ call,put }){
-                console.log(payload);
                 const response = yield call(getCode, payload);
+                if(response.code=='SUCCESS'){
+                    Toast.info('短信已发送成功 !!!', 2);
+                }else{
+                    Toast.info('短信发送失败 !!!', 2);
+                }
             },
             *logout({ payload }, { call, put }) {
+                Toast.loading('',0)
                 const isLogin = {isLogin:false};
                 yield put({
                     type:'save',
@@ -95,9 +111,12 @@ export default {
                 const response = yield call(userLogout,payload);
                 let nPayload = {isLogin: false};
                 if(response.code == 'SUCCESS'){
+                    
+                    Toast.hide();
                     localStorage.setItem('UTRAFF', '');
                     localStorage.setItem('UT', '');
                     nPayload.res = response;
+                    nPayload.userInfo = ''
                 }else{
                     nPayload.res = response;
                     nPayload.isLogin=false
@@ -106,7 +125,7 @@ export default {
                     type:'save',
                     payload:nPayload
                 })
-                yield put(routerRedux.push('/login'))
+                yield put(routerRedux.push('/login'));
                 //return <Switch><Redirect to="/login"/></Switch>
                
             },

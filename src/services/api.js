@@ -21,7 +21,7 @@ export async function userReg (params) {
 	});
 }
 
-// 用户注册
+// 用户退出
 export async function userLogout (params) {
 	return request(publicProInterface()+`/api/logout`, {
 		method: 'GET',

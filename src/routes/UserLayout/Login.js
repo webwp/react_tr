@@ -2,8 +2,9 @@ import React,{Component} from 'react';
 import {connect} from 'dva';
 
 import {Redirect} from 'dva/router';
-import { List, InputItem, WhiteSpace,Button,Flex,Checkbox } from 'antd-mobile';
+import { List, InputItem, WhiteSpace,Button,Flex,Checkbox,Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
+import { PasswordEncryption } from '../../common/PasswordEncryption';
 
 const AgreeItem = Checkbox.AgreeItem;
 
@@ -14,16 +15,30 @@ const AgreeItem = Checkbox.AgreeItem;
 class Index extends Component {
     submit = () => {
         this.props.form.validateFields((error, value) => {
-          console.log(error,value)
-          const { dispatch } = this.props;
-          dispatch({
-            type: 'app/login',
-            payload: {
-              ...value
-            }
-          });
+          //console.log(error,value);
+
+          //对提交的密码进行简单加密处理
+          if(!error){
+              value.password = PasswordEncryption(value.password);
+              const { dispatch } = this.props;
+              dispatch({
+                type: 'app/login',
+                payload: {
+                  ...value
+                }
+              });
+          }
         });
     }
+    loadingToast(msg) {
+      Toast.loading(msg, 1, (msg) => {
+        console.log('Load complete !!!');
+      });
+    }
+    loadingFaile(msg) {
+        Toast.fail(msg, 1);
+    }
+    
     render(){
         let errors;
         const { getFieldProps , getFieldError } = this.props.form;
@@ -36,14 +51,14 @@ class Index extends Component {
             <List  style={{ margin: '5px 0', backgroundColor: 'white' }}>
             <InputItem
               {...getFieldProps('phone', {
-                rules: [{required: true, message: '登录用户名不能为空'}],
+                rules: [{required: true, message: '手机号码或者帐户名不能为空'}],
               })}
               clear
               placeholder="手机号码或者帐户名"
               ref={el => this.autoFocusInst = el}
               name="phone"
             ></InputItem>
-            {(errors = getFieldError('userName')) ? errors.join(',') : null}
+            {(errors = getFieldError('userName'))}
             <InputItem
               {...getFieldProps('password', {
                 rules: [{required: true, message: '密码不能为空'}],
@@ -68,7 +83,7 @@ class Index extends Component {
               <Button type='primary' onClick={this.submit}>登录</Button>
             
           </List>
-          <div className="marginBottom"><a href="#/reg" >新用户注册</a></div>
+          <div className="marginBottom"><a href="#/reg" >新用户注册</a><a href="#/">首页</a></div>
           </div>
         );
     }
