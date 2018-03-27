@@ -1,6 +1,7 @@
 import dva from 'dva';
 import './index.css';
 import 'antd-mobile/dist/antd-mobile.css';
+import history from 'history/createHashHistory'
 
 // 1. Initialize
 const app = dva();
@@ -9,7 +10,11 @@ const app = dva();
 // app.use({});
 
 // 3. Model
- app.model(require('./models/App').default);
+const models=['User','IndexPage'];
+models.forEach((model)=>{
+    app.model(require(`./models/${model}`).default);
+})
+
 
 // 4. Router
 app.router(require('./router').default);

@@ -8,7 +8,7 @@ import Res from "../../components/Res";
 import { PasswordEncryption } from '../../common/PasswordEncryption';
 
 @connect(state=>({
-  app:state.app
+  app:state.user
 }))
 
 class Index extends Component {
@@ -44,6 +44,7 @@ class Index extends Component {
       Toast.loading(msg, 1, (msg) => {});
     }
     submit = () => {
+      
           this.props.form.validateFields((error, value) => {
             if(!error){
                 //提交的手机号码为180 0780 3076，标准状态需要清楚空格
@@ -52,7 +53,7 @@ class Index extends Component {
                 value.password = PasswordEncryption(value.password);
                 const { dispatch } = this.props;
                 dispatch({
-                  type:'app/reg',
+                  type:'user/reg',
                   payload:{
                     ...value
                   }
@@ -67,7 +68,7 @@ class Index extends Component {
       if(phone!=''){
           const { dispatch } = this.props;
           dispatch({
-              type:"app/code",
+              type:"user/code",
               payload:{ phone:phone.replace(/\s+/g,"")}
           })
           thisDom.parentNode.style.pointerEvents='none';
@@ -145,6 +146,7 @@ class Index extends Component {
                 <Button type='primary' onClick={this.submit}>注册</Button>
                 <WhiteSpace />
                 <Button onClick={this.backPage}>返回登录页</Button>
+                {/* <Button onClick={()=>{history.goBack()}}>返回</Button> */}
               </List.Item>
           </List>
           </div>

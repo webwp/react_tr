@@ -1,4 +1,4 @@
-import { userLogin,userReg,getCode } from '../services/api';
+import { userLogin,userReg,getCode } from '../services/User';
 
 export default {
     

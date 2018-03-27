@@ -4,11 +4,11 @@ import {Redirect} from 'dva/router'
 import User from '../../components/User';
 
 @connect(state=>({
-    app:state.app
+    user:state.user
 }))
 class Index extends Component{
     render(){
-        const { userInfo } = this.props.app;
+        const { userInfo } = this.props.user;
         if(userInfo == null || userInfo == ''){
             return <Redirect to='/login' />;
         }

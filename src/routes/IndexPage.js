@@ -4,35 +4,76 @@ import { TabBar,NavBar, Icon } from 'antd-mobile';
 import { Redirect, Route, Switch } from 'dva/router';
 import { connect } from 'dva';
 import User from './UserLayout/User';
-import Index from './Index';
+import Index from './Index/Index';
 import Ex from './ex';
+//import IndexPage from '../models/IndexPage';
 
 
-// @connect(state=>({
-//   app:state.app
-// }))
+/*
+*将IndexPage封装为fun
+*将封装的oIndexPage关联当前组件
+*/
+const oIndexPage =(IndexPage)=>{
+  return IndexPage
+}
+//@oIndexPage
+@connect(state =>({
+  page:state.indexPage
+}))
 class TabBarExample extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'blueTab',
+      selectedTab: '',
       hidden: false,
       fullScreen: false,
-      userInfo:''
     };
   }
 
+//   componentDidMount(){
+//     window.addEventListener("wheel", this.ScollPostion)
+// }
+// myFunction = () => {
+//     var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
+//     console.log(top)
+// }
+// ScollPostion() {
+//     var t, l, w, h;
+//     if (document.documentElement && document.documentElement.scrollTop) {
+//         t = document.documentElement.scrollTop;
+//         l = document.documentElement.scrollLeft;
+//         w = document.documentElement.scrollWidth;
+//         h = document.documentElement.scrollHeight;
+
+//         console.log(111)
+//     } else if (document.body) {
+//         t = document.body.scrollTop;
+//         l = document.body.scrollLeft;
+//         w = document.body.scrollWidth;
+//         h = document.body.scrollHeight;
+//     }
+//     console.log(t);
+//     return {
+//         top: t,
+//         left: l,
+//         width: w,
+//         height: h
+//     };
+    
+// }
+
   renderContent(pageText) {
     return (
-      
-      <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
-        <div style={{ paddingTop: 60 }}>
+      <div style={{  }}>
+        <div>
             {pageText}
         </div>
       </div>
     );
   }
+
   render() {
+    const { dispatch,page } = this.props;
     return (
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { position: 'fixed', height: '100%', width: '100%', top: 0 }}>
         <TabBar
@@ -44,98 +85,56 @@ class TabBarExample extends Component {
           <TabBar.Item
             title="首页"
             key="Life"
-            icon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(../src/assets/home.png) center center /  21px 21px no-repeat' }}
-            />
-            }
-            selectedIcon={<div style={{
-              width: '22px',
-              height: '22px',
-              background: 'url(../src/assets/home_light.png) center center /  21px 21px no-repeat' }}
-            />
-            }
-            selected={this.state.selectedTab === 'blueTab'}
+            icon={<i className="iconfont icon-shouye1 fz-md"></i>}
+            selectedIcon={<i className="iconfont icon-shouye1 fz-md"></i>}
+            selected={this.props.page.selectedTab === 'blueTab'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'blueTab',
-              });
+              dispatch({
+                type:'indexPage/tab',
+                payload:{selectedTab:'blueTab'}
+              })
             }}
             data-seed="logId"
           >
-            <NavBar
-                mode="dark"
-                icon={<Icon type="home" />}
-                onLeftClick={() => console.log('onLeftClick')}
-                rightContent={[
-                  <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                  <Icon key="1" type="ellipsis" />,
-                ]}
-            >智慧出行-首页</NavBar>
-            <Index />
+            {this.renderContent(<Index />)}
           </TabBar.Item>
           <TabBar.Item
-            icon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            selectedIcon={
-              <div style={{
-                width: '22px',
-                height: '22px',
-                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}
-              />
-            }
-            title="模块1"
+            icon={<i className="iconfont icon-saoyisao fz-md"></i>}
+            selectedIcon={<i className="iconfont icon-saoyisao fz-md"></i>}
+            title="扫码/支付"
             key="Koubei"
             
-            selected={this.state.selectedTab === 'redTab'}
+            selected={this.props.page.selectedTab === 'redTab'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'redTab',
-              });
+              dispatch({
+                type:'indexPage/tab',
+                payload:{selectedTab:'redTab'}
+              })
             }}
             data-seed="logId1"
           >
-          <NavBar
-              mode="dark"
-              icon={<Icon type="home" />}
-              onLeftClick={() => console.log('onLeftClick')}
-              rightContent={[
-                <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                <Icon key="1" type="ellipsis" />,
-              ]}
-          >模块1</NavBar>
-          <Ex />
-          {this.renderContent('Life')}
-           
+           {this.renderContent(<Ex />)}
           </TabBar.Item>
           <TabBar.Item
-            icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg' }}
-            selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg' }}
+            icon={<i className="iconfont icon-account fz-md"></i>}
+            selectedIcon={<i className="iconfont icon-account fz-md"></i>}
             title="会员中心"
             key="my"
-            selected={this.state.selectedTab === 'yellowTab'}
+            selected={this.props.page.selectedTab === 'yellowTab'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'yellowTab',
-              });
+              dispatch({
+                type:'indexPage/tab',
+                payload:{selectedTab:'yellowTab'}
+              })
             }}
           >
           <NavBar
               mode="dark"
               icon={<Icon type="home" />}
               onLeftClick={() => console.log('onLeftClick')}
-              // rightContent={[
-              //   <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-              //   <Icon key="1" type="ellipsis" />,
-              // ]}
           >用户中心</NavBar>
-            <User />
+            
+            {this.renderContent(<User />)}
           </TabBar.Item>
         </TabBar>
       </div>

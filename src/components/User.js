@@ -16,13 +16,13 @@ class Index extends Component{
     handleuUserLogout = ()=>{
         const { dispatch } = this.props;
         dispatch({
-            type:"app/logout",
+            type:"user/logout",
             payload:''
         })
     }
     componentWillMount(){
-        const { app } = this.props;
-        const { userInfo } = app;
+        const { user } = this.props;
+        const { userInfo } = user;
         if(userInfo !=null || userInfo != ''){
             this.setState({
                 phone:userInfo.phone

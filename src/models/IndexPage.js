@@ -1,54 +1,39 @@
-import { userLogin,userReg,getCode } from '../services/api';
+import { routerRedux,Redirect,Switch } from 'dva/router';
+import { Toast } from 'antd-mobile';
+
+
 
 export default {
     
         namespace: 'indexPage',
     
         state: {
-            userInfo:'',
-            collapsed: false,
-            loading: true,
-            authLoading: false,
-            profile: null,
+            selectedTab:''
         },
     
         subscriptions: {
-            
+            setup({ dispatch, history }) {
+                dispatch({
+                    type: 'getTab',
+                });
+            },
         },
     
         effects: {
-            *fetch({ payload }, { call, put }) {  // eslint-disable-line
-                yield put({ type: 'save' });
-            },
-            *fetchConfig({ payload }, { call, put }) {
-                
-            },
-            *reg({ payload },{ call, put }){
+            *tab({ payload }, { call, put }){
+                localStorage.setItem('TAB',JSON.stringify(payload));
                 yield put({
-                    type: 'save',
-                    payload: {authLoading: true},
-                });
-                const response = yield call(userReg, payload);
-                let nPayload = {authLoading: false};
-                if (response.code == 'SUCCESS') {
-                    nPayload.userInfo = response.data;
-                    nPayload.authLoading=true;
-                    localStorage.setItem('UTRAFF', response.data);
-                }
+                    type:'save',
+                    payload:payload
+                })
+            },
+            *getTab({ payload },{ put }){
+                const nPayload = JSON.parse(localStorage.getItem('TAB'));
                 yield put({
-                    type: 'save',
-                    payload: nPayload
-                });
+                    type:'save',
+                    payload:nPayload
+                })
             },
-            *login({ payload }, { call, put }) {
-            },
-            *code({ payload },{ call,put }){
-                const response = yield call(getCode, payload);
-            },
-            *logout({ payload }, { call, put }) {
-                
-            },
-            
         },
     
         reducers: {

@@ -4,7 +4,7 @@ class Index extends Component{
     
     render(){
         return(
-            <h3 style={{lineHeight:'50px',textAlign:"center"}}>模块开发中</h3>
+            <h3 style={{lineHeight:'50px',textAlign:"center"}}>模块开发中1</h3>
         )
     }
 }
