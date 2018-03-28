@@ -7,6 +7,7 @@ import IndexPage from './routes/IndexPage';
 import Login from './routes/UserLayout/Login';
 import Reg from './routes/UserLayout/Reg';
 import User from './routes/UserLayout/User';
+import Test from './routes/UserLayout/test';
 
 const {ConnectedRouter} = routerRedux;
 
@@ -23,6 +24,7 @@ function RouterConfig({ history , app }) {
         <Route path="/login" exact component={Login} />
         <Route path="/reg" exact component={Reg} />
         <Route path="/user" exact component={User} />
+        <Route path="/test" exact component={Test} />
       </Switch>
       </ConnectedRouter>
     </Router>

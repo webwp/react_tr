@@ -7,7 +7,7 @@ import publicProInterface from '../common/publicProInterface';
 
 // 用户登录
 export async function userLogin (params) {
-	return request(publicProInterface.requestURL+'/cms/login', {
+	return request(publicProInterface.requestURL+'/api/login', {
 		method: 'POST',
 		body: params
 	});
