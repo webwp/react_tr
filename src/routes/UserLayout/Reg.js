@@ -8,6 +8,43 @@ import Res from "../../components/Res";
 import { PasswordEncryption } from '../../common/PasswordEncryption';
 import Reg from '../../components/User/Reg'
 
+
+// var data = 0;
+
+ 
+//   function sendData(data) {
+//     if (window.originalPostMessage) {
+//       window.postMessage(data);
+//     } else {
+//       throw Error('postMessage接口还未注入');
+//     }
+//   }
+ 
+//   window.onload = function () {
+//     //alert("Reg onload")
+//     document.addEventListener('message', function (e) {
+//       document.getElementById('data').textContent = e.data;
+//     });
+//     // document.getElementById('button').onclick = function () {
+//     //   data += 100;
+//     //   sendData(data);
+//     // }
+    
+//   }
+
+    
+
+  // function sendData(data) {
+  //   if (window.originalPostMessage) {
+  //     window.postMessage(data);
+  //   } else {
+  //     throw Error('postMessage接口还未注入');
+  //   }
+  // }
+      
+    
+
+
 @connect(state=>({
   app:state.user
 }))
@@ -18,10 +55,12 @@ class Index extends Component {
         value: '',
         text:"获取验证码",
         backPage:false,
+        tsss:""
     }
+    
     onErrorClick = () => {
         if (this.state.hasError) {
-          Toast.info('Please enter 11 digits');
+          Toast.info('请输入11位数手机号码');
         }
     }
     onChange = (value) => {
@@ -44,57 +83,57 @@ class Index extends Component {
     loadingToast(msg) {
       Toast.loading(msg, 1, (msg) => {});
     }
+    
     submit = () => {
       
-          // this.props.form.validateFields((error, value) => {
-          //   if(!error){
-          //       //提交的手机号码为180 0780 3076，标准状态需要清楚空格
-          //       value.phone = value.phone.replace(/\s+/g,"");
-          //       //对提交的密码进行简单加密处理
-          //       value.password = PasswordEncryption(value.password);
-          //       const { dispatch } = this.props;
-          //       dispatch({
-          //         type:'user/reg',
-          //         payload:{
-          //           ...value
-          //         }
-          //       })
-          //   }
-          // });
+          this.props.form.validateFields((error, value) => {
+            if(!error){
+                //提交的手机号码为180 0780 3076，标准状态需要清楚空格
+                value.phone = value.phone.replace(/\s+/g,"");
+                //对提交的密码进行简单加密处理
+                //value.password = PasswordEncryption(value.password);
+                const { dispatch } = this.props;
+                dispatch({
+                  type:'user/reg',
+                  payload:{
+                    ...value
+                  }
+                })
+            }
+          });
     }
-    hadleGetCode = (e)=>{
-      const  phone =this.props.form.getFieldProps('phone').value;
-      const thisDom = e.target;
-      
-      if(phone!=''){
-          const { dispatch } = this.props;
-          dispatch({
-              type:"user/code",
-              payload:{ phone:phone.replace(/\s+/g,"")}
-          })
-          thisDom.parentNode.style.pointerEvents='none';
-          var nTime=60;
-          var _that = this;
-
-          //设定计时器，获取短信
-          var index = setInterval(function(){ 
-              nTime--;
-              var txt = nTime+"秒后可重发";
-              _that.setState({text:txt})
-              if(nTime==0){
-                clearInterval(index);
-                _that.setState({text:"获取验证码"});
-                thisDom.parentNode.style.pointerEvents='auto';
-              }
-          }, 1000);
-      }
-    }
+   
     backPage = ()=>{
       //console.log('返回登陆页面');
       this.setState({backPage:true})
       return <Redirect to="/login" />
     }
+    componentWillMount(){
+      document.addEventListener('message', function (e) {
+        document.getElementById('data').textContent = e.data;
+      });
+      
+      //sendData(data);
+      // document.addEventListener('message', function (e) {
+      //   // document.getElementById('data').textContent = e.data;
+      //   this.setState({tsss:e.data});
+      // });  
+        
+    }
+    componentDidMount(){
+      //alert(window.location.href);
+      //alert(window.originalPostMessage)
+      //sendData(data);
+    }
+    
+  //  sendToWebview(){
+  //      data += 100;
+  //      Toast.info(data)
+  //      sendData(data);
+  //  }
+
     render(){
+      
         let errors;
         const { getFieldProps,getFieldError } = this.props.form;
         const {app} = this.props;
@@ -103,8 +142,12 @@ class Index extends Component {
         return(
           <div className="loginBox custom">
              <div className="custom-pad-0-25 mt80">
-                 <Reg onSubmit={this.submit.bind(this)} />
+             {/* <button onClick={this.sendToWebview} id="button">发送数据到react native</button>
+              <p >收到react native发送的数据: <span id="data"></span></p> */}
+             <Reg {...this.props} onSubmit={this.submit.bind(this)} />
+                 
              </div>
+             
           </div>
         );
     }

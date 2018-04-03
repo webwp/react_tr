@@ -18,7 +18,7 @@ class Shortcut extends Component{
                     renderItem={dataItem => (
                         <div style={{'padding':"0 15px"}}>
                             <div style={{marginTop: '12px',"float":'left','textAlign':'left' }}>
-                                <strong>{dataItem.title}</strong>
+                                <strong style={{fontWeight:'normal'}}>{dataItem.title}</strong>
                                 <p className="font-text-12">{dataItem.txt}</p>
                             </div>
                             <img src={dataItem.img} className="shortcut-icon" style={{ width: '48px', height: '48px',"float":'right' }} alt="" />

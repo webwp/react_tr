@@ -18,7 +18,7 @@ class IndexGrid extends Component{
             num++;
         }
         return (
-            <Grid data={data} hasLine={false} />
+            <Grid className='custom_grid_other' data={data} hasLine={false} />
         )
     }
 }

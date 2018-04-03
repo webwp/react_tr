@@ -5,9 +5,17 @@ import publicProInterface from '../common/publicProInterface';
 
 
 
-// 用户登录
+// 用户密码登录
 export async function userLogin (params) {
 	return request(publicProInterface.requestURL+'/api/login', {
+		method: 'POST',
+		body: params
+	});
+}
+
+// 用户验证码登录
+export async function userLoginCode (params) {
+	return request(publicProInterface.requestURL+'/api/login_verify_code', {
 		method: 'POST',
 		body: params
 	});

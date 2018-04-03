@@ -30,41 +30,10 @@ class TabBarExample extends Component {
     };
   }
 
-//   componentDidMount(){
-//     window.addEventListener("wheel", this.ScollPostion)
-// }
-// myFunction = () => {
-//     var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
-//     console.log(top)
-// }
-// ScollPostion() {
-//     var t, l, w, h;
-//     if (document.documentElement && document.documentElement.scrollTop) {
-//         t = document.documentElement.scrollTop;
-//         l = document.documentElement.scrollLeft;
-//         w = document.documentElement.scrollWidth;
-//         h = document.documentElement.scrollHeight;
-
-//         console.log(111)
-//     } else if (document.body) {
-//         t = document.body.scrollTop;
-//         l = document.body.scrollLeft;
-//         w = document.body.scrollWidth;
-//         h = document.body.scrollHeight;
-//     }
-//     console.log(t);
-//     return {
-//         top: t,
-//         left: l,
-//         width: w,
-//         height: h
-//     };
-    
-// }
 
   renderContent(pageText) {
     return (
-      <div style={{  }}>
+      <div style={{ backgroundColor: 'white', height: '100%' }}>
         <div>
             {pageText}
         </div>
@@ -128,11 +97,6 @@ class TabBarExample extends Component {
               })
             }}
           >
-          <NavBar
-              mode="dark"
-              icon={<Icon type="home" />}
-              onLeftClick={() => console.log('onLeftClick')}
-          >用户中心</NavBar>
             
             {this.renderContent(<User />)}
           </TabBar.Item>

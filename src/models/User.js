@@ -1,4 +1,4 @@
-import { userLogin,userReg,getCode,userLogout } from '../services/User';
+import { userLogin,userReg,getCode,userLogout,userLoginCode } from '../services/User';
 import { routerRedux,Redirect,Switch } from 'dva/router';
 import { Toast } from 'antd-mobile';
 
@@ -91,6 +91,33 @@ export default {
                     })
                 }
                 
+                
+            },
+            *loginCode({payload},{call,put}){
+                Toast.loading('',0);
+                const response = yield call(userLoginCode,payload);
+                let nPayload = {};
+                if(response.code === 'SUCCESS'){
+                    
+                    Toast.hide();
+                    nPayload.isLogin = true;
+                    nPayload.userInfo = response.data.profile;
+                    localStorage.setItem('UTRAFF', JSON.stringify(response.data.profile));
+                    localStorage.setItem('UT', JSON.stringify(response.data.token));
+                    yield put({
+                        type:'save',
+                        payload:nPayload
+                    })
+                    yield put(routerRedux.push('/'));
+                }else{
+                    //返回错误信息  r_errors
+                    nPayload.r_errors = response.errors;
+                    nPayload.r_IS;
+                    yield put({
+                        type:'save',
+                        payload:nPayload
+                    })
+                }
                 
             },
             *code({ payload },{ call,put }){

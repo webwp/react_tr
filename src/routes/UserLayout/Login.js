@@ -8,6 +8,7 @@ import { createForm } from 'rc-form';
 
 import LoginCode from '../../components/User/loginCode';
 import LoginPassword from '../../components/User/loginPassword';
+import Header from '../../components/Other/Header';
 
 
 const tabs = [
@@ -19,26 +20,35 @@ function renderTabBar(props) {
     {({ style }) => <div style={{ ...style, zIndex: 1 }}><Tabs.DefaultTabBar {...props} /></div>}
   </Sticky>);
 }
+
 @connect(state => ({
   app: state.user
 }))
 
+
+
 class Index extends Component {
     submit = (value) => {
-        
-
+      
           
               value.phone = value.phone.replace(/\s+/g,"");
-              console.log(value);
+              // console.log(value);
+              let dispatch_typs = value.password ? 'user/login' : 'user/loginCode'
+              if(value.password){
+
+              }
               const { dispatch } = this.props;
-              // dispatch({
-              //   type: 'user/login',
-              //   payload: {
-              //     ...value
-              //   }
-              // });
+              dispatch({
+                type: 'user/login',
+                payload: {
+                  ...value
+                }
+              });
           
         
+    }
+    handleMessage(e) {
+      this.setState({webViewData: e.nativeEvent.data});
     }
     loadingToast(msg) {
       Toast.loading(msg, 1, (msg) => {
@@ -50,25 +60,26 @@ class Index extends Component {
     }
 
     render(){
-        
+        console.dir(this.props.history)
         return(
           <div className="loginBox custom">
-            
+            <Header {...this.props} />
             <StickyContainer className='custom-pad-0-25 mt80' style={{height:'60%'}}>
                 <Tabs tabs={tabs}
                   initalPage={'t2'}
                   renderTabBar={renderTabBar}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',padding:'15px 0', backgroundColor: '#fff' }}>
-                      <LoginCode onSubmit={this.submit.bind(this)} />
+                      <LoginCode {...this.props} onSubmit={this.submit.bind(this)} />
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',padding:'15px 0', backgroundColor: '#fff' }}>
-                      <LoginPassword onSubmit={this.submit.bind(this)}/>
+                      <LoginPassword {...this.props} onSubmit={this.submit.bind(this)}/>
                   </div>
                 </Tabs>
                 <div className="marginBottom">
                     <a href="#/reg" >新用户注册</a>
                     <a href="#/">首页</a>
+                    {/* <Button onClick={()=>{this.props.history.goBack()}}>返回</Button> */}
                 </div>
             </StickyContainer>
 

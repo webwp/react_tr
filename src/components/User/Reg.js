@@ -25,7 +25,9 @@ class Reg extends Component{
             value:'',
             modal1: false,
             content:"协议内容",
-            modalTitle:"《出行南宁会员服务协议》"
+            modalTitle:"《出行南宁会员服务协议》",
+            codeText:'获取验证码',
+            disabled:false
         };
     }
     onClose = key => () => {
@@ -54,13 +56,53 @@ class Reg extends Component{
         if(this.props.onSubmit){
             this.props.form.validateFields((error,value)=>{
                 console.log(value)
-                if(!error){
-                    this.props.onSubmit(value);
+                if(value.password == value.repassword){
+                    if(!error){
+                        this.props.onSubmit(value);
+                    }else{
+                        this.props.onSubmit({});
+                    }
                 }else{
-                    this.props.onSubmit({});
+                    Toast.info('两次密码输入不一致！',2)
+                    this.setState({
+                        hasError:true
+                    })
                 }
+                
             })
         }
+    }
+    //获取手机验证码
+    getCode = (e)=>{
+        
+        const phone = this.Phone.props.value,
+              { dispatch } = this.props;
+        if( typeof phone != "undefined" || phone != null){
+            dispatch({
+                type:'user/code',
+                payload:{phone:phone.replace(/\s+/g,"")}
+            })
+            Toast.loading();
+            let _this = this,times = 10;
+            let index = setInterval(function(){
+                Toast.hide();
+                _this.setState({
+                    codeText:times<10 ? '0'+times+'秒后可获取':times+'秒后可获取',
+                    disabled:true
+                })
+                times--;
+                if(times < 0){
+                    clearInterval(index);
+                    _this.setState({
+                        codeText:'获取验证码',
+                        disabled:false
+                    })
+                }
+            },1000);
+        }else{
+            Toast.info('手机号码不能为空',2)
+        }
+        
     }
     checkPassword = (value) => {
         console.log(this);
@@ -91,7 +133,7 @@ class Reg extends Component{
                     clear
                     type="phone"
                     placeholder="手机号码"
-                    ref={el => this.autoFocusInst = el}
+                    ref={el => this.Phone = el}
                     name="phone"
                     error={(errors = getFieldError('phone'))}
                 >手机号</InputItem>
@@ -105,7 +147,7 @@ class Reg extends Component{
                     type='text'
                     ref={el => this.customFocusInst = el}
                     style={{width:'70%'}}
-                >验证码<Button type='primary' className="getCode" size='small'>获取验证码</Button></InputItem>
+                >验证码<Button disabled={this.state.disabled} type='primary' className="getCode" onClick={this.getCode} size='small'>{this.state.codeText}</Button></InputItem>
 
                 {/* {(errors = getFieldError('password')) ? errors.join(',') : null} */}
                 <WhiteSpace />
@@ -127,8 +169,8 @@ class Reg extends Component{
                     clear
                     type="password"
                     placeholder="重复密码"
-                    onChange={this.checkPassword}
-                    value={this.state.value}
+                    //onChange={this.checkPassword}
+                    //value={this.state.value}
                     //ref={el => this.autoFocusInst = el}
                     error={this.state.hasError}
                 >重复密码</InputItem>

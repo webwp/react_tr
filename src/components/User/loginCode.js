@@ -9,6 +9,13 @@ import { createForm } from 'rc-form';
 const AgreeItem = Checkbox.AgreeItem;
 
 class LoginCode extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            codeText:'获取验证码',
+            disabled:false
+        }
+    }
     //提交表单数据
     submit = ()=>{
         if(this.props.onSubmit){
@@ -20,6 +27,38 @@ class LoginCode extends Component{
                 }
             })
         }
+    }
+    //获取手机验证码
+    getCode = (e)=>{
+        
+        const phone = this.Phone.props.value,
+              { dispatch } = this.props;
+        if( typeof phone != "undefined" || phone != null){
+            dispatch({
+                type:'user/code',
+                payload:{phone:phone.replace(/\s+/g,"")}
+            })
+            Toast.loading();
+            let _this = this,times = 10;
+            let index = setInterval(function(){
+                Toast.hide();
+                _this.setState({
+                    codeText:times<10 ? '0'+times+'秒后可获取':times+'秒后可获取',
+                    disabled:true
+                })
+                times--;
+                if(times < 0){
+                    clearInterval(index);
+                    _this.setState({
+                        codeText:'获取验证码',
+                        disabled:false
+                    })
+                }
+            },1000);
+        }else{
+            Toast.info('手机号码不能为空',2)
+        }
+        
     }
     render(){
         let errors;
@@ -34,13 +73,10 @@ class LoginCode extends Component{
                     clear
                     type="phone"
                     placeholder="手机号码"
-                    ref={el => this.autoFocusInst = el}
+                    ref={el => this.Phone = el}
                     name="phone"
                     error={(errors = getFieldError('phone'))}
                 >手机号</InputItem>
-                
-
-
                 <InputItem
                     {...getFieldProps('code', {
                     rules: [{required: true, message: '验证码不能为空'}],
@@ -50,9 +86,9 @@ class LoginCode extends Component{
                     type='text'
                     ref={el => this.customFocusInst = el}
                     style={{width:'70%'}}
-                >验证码<Button type='primary' className="getCode" size='small'>获取验证码</Button></InputItem>
+                >验证码<Button disabled={this.state.disabled} type='primary' className="getCode" onClick={this.getCode} size='small'>{this.state.codeText}</Button></InputItem>
 
-                {(errors = getFieldError('password')) ? errors.join(',') : null}
+                {(errors = getFieldError('code')) ? errors.join(',') : null}
                 <WhiteSpace />
                 <div style={{"display": "block",'height':'35px'}}>
                     <AgreeItem
@@ -69,5 +105,5 @@ class LoginCode extends Component{
         )
     }
 }
-const setLoginCode = createForm()(LoginCode);
-export default setLoginCode;
+const reLoginCode = createForm()(LoginCode);
+export default reLoginCode;

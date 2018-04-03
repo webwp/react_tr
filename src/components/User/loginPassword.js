@@ -18,7 +18,7 @@ class LoginPassword extends Component{
                 //提交表单数据到父组件
                  if(!error){
                      //对提交的密码进行简单加密处理
-                     value.password = PasswordEncryption(value.password);
+                     //value.password = PasswordEncryption(value.password);
                      this.props.onSubmit(value);
                  }else{
                      this.props.onSubmit({});
