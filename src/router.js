@@ -2,14 +2,6 @@ import React from 'react';
 import { Router, Route, Switch,routerRedux } from 'dva/router';
 import dynamic from 'dva/dynamic';
 
-import {getRouterData} from './common/router';
-
-// import IndexPage from './routes/IndexPage';
-// import Login from './routes/UserLayout/Login';
-// import Reg from './routes/UserLayout/Reg';
-// import User from './routes/UserLayout/User';
-// import Test from './routes/UserLayout/test';
-
 const {ConnectedRouter} = routerRedux;
 
 function RouterConfig({ history , app }) {
@@ -114,8 +106,7 @@ function RouterConfig({ history , app }) {
       //models: () => [import('./models/User')],
       component: () => import('./waterTour/'),
     }
-  ]
-  console.log('路由器')
+  ];
   return (
 
     <Router history={history}>
