@@ -9,13 +9,15 @@ export default {
         namespace: 'user',
     
         state: {
-            userInfo:'',
+            userInfo:null,
             collapsed: false,
             loading: true,
             authLoading: false,
             profile: null,
             isLogin:false,
-            r_errors:''
+            r_errors:'',
+            authentication:false,
+            authlayout:false,
         },
     
         subscriptions: {
@@ -34,10 +36,12 @@ export default {
                 yield put({ type: 'save' });
             },
             *fetchConfig({ payload }, { call, put }) {
-                const userInfo = localStorage.getItem("UTRAFF");
+                const UT = localStorage.getItem("UT");
+                const userInfo = localStorage.getItem('UTRAFF')
                 let nPayload={};
-                if(userInfo != ""){
+                if(UT){
                     nPayload.isLogin=true;
+                    nPayload.authlayout = true;
                     nPayload.userInfo=JSON.parse(userInfo);
                     yield put({
                         type: 'save',
@@ -74,13 +78,17 @@ export default {
                     Toast.hide();
                     nPayload.isLogin = true;
                     nPayload.userInfo = response.data.profile;
+
+                    nPayload.authentication = true;
+                    nPayload.res = response;
                     localStorage.setItem('UTRAFF', JSON.stringify(response.data.profile));
                     localStorage.setItem('UT', JSON.stringify(response.data.token));
                     yield put({
                         type:'save',
                         payload:nPayload
                     })
-                    yield put(routerRedux.push('/'));
+
+                    //yield put(routerRedux.push('/'));
                 }else{
                     //返回错误信息  r_errors
                     nPayload.r_errors = response.errors;
@@ -121,7 +129,7 @@ export default {
                 
             },
             *code({ payload },{ call,put }){
-                console.log(payload)
+                
                 const response = yield call(getCode, payload);
                 if(response.code=='SUCCESS'){
                     Toast.info('短信已发送成功 !!!', 2);
@@ -142,10 +150,11 @@ export default {
                 if(response.code == 'SUCCESS'){
                     
                     Toast.hide();
-                    localStorage.setItem('UTRAFF', '');
-                    localStorage.setItem('UT', '');
+                    localStorage.removeItem('UTRAFF', '');
+                    localStorage.removeItem('UT', '');
                     nPayload.res = response;
-                    nPayload.userInfo = ''
+                    nPayload.userInfo = null;
+                    nPayload.authentication = true;
                 }else{
                     nPayload.res = response;
                     nPayload.isLogin=false
@@ -154,8 +163,8 @@ export default {
                     type:'save',
                     payload:nPayload
                 })
-                yield put(routerRedux.push('login'));
-                //return <Switch><Redirect to="/login"/></Switch>
+                //yield put(routerRedux.push('/'));
+                return <Switch><Redirect to="/login"/></Switch>
                
             },
             

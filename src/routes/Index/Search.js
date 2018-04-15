@@ -42,15 +42,7 @@ class Search extends Component {
             <div className="searchClass" ref={el => this.lv = el} style={{color:"rgb(11, 114, 188) !important"}}>
                 <div className="searchinput">
                     <div className="col-30">
-                        {/* <Grid 
-                            className="custom_grid"
-                            data={data} 
-                            columnNum={2} 
-                            onClick={_el => console.log(_el.text)} 
-                            hasLine={false} 
-                            activeStyle={false} 
-                            itemStyle={{background: '#0b72bc','color':'#fff'}} 
-                        /> */}
+                        
                         <i className="iconfont icon-saoyisao fz-md" style={{ float:'left'}}></i>
                         <i className="iconfont icon-erweima fz-md" style={{marginLeft:'5px'}}></i>
                     </div>

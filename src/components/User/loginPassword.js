@@ -67,7 +67,7 @@ class LoginPassword extends Component{
                 </div>
                 <WhiteSpace />
                 <Button type='primary' onClick={this.submit}>登录</Button>
-
+                <p style={{textAlign:'right',marginTop:"15px"}}><a className='left' href="">忘记密码</a>还不是会员 <a href="#/reg" >立即注册</a></p>
             </List>
         )
     }

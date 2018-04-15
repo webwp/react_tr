@@ -8,7 +8,25 @@ import Res from "../../components/Res";
 import { PasswordEncryption } from '../../common/PasswordEncryption';
 import Reg from '../../components/User/Reg'
 
-
+var data = 0;
+ 
+  function sendData(data) {
+    if (window.originalPostMessage) {
+      window.postMessage(data);
+    } else {
+      throw Error('postMessage接口还未注入');
+    }
+  }
+  //window.onload = function () {
+    document.addEventListener('message', function (e) {
+      //alert('222');
+      document.getElementById('mmk').textContent = e.data;
+    });
+    // document.getElementById('button').onclick = function () {
+    //   data += 100;
+    //   sendData(data);
+    // }
+ // }
 // var data = 0;
 
  
@@ -102,38 +120,18 @@ class Index extends Component {
             }
           });
     }
+    componentWillMount(){
+      //alert(navigator.userAgent);
+  //localStorage.removeItem('TEST')
+    }
    
     backPage = ()=>{
       //console.log('返回登陆页面');
       this.setState({backPage:true})
       return <Redirect to="/login" />
     }
-    componentWillMount(){
-      document.addEventListener('message', function (e) {
-        document.getElementById('data').textContent = e.data;
-      });
-      
-      //sendData(data);
-      // document.addEventListener('message', function (e) {
-      //   // document.getElementById('data').textContent = e.data;
-      //   this.setState({tsss:e.data});
-      // });  
-        
-    }
-    componentDidMount(){
-      //alert(window.location.href);
-      //alert(window.originalPostMessage)
-      //sendData(data);
-    }
-    
-  //  sendToWebview(){
-  //      data += 100;
-  //      Toast.info(data)
-  //      sendData(data);
-  //  }
 
     render(){
-      
         let errors;
         const { getFieldProps,getFieldError } = this.props.form;
         const {app} = this.props;
@@ -142,10 +140,11 @@ class Index extends Component {
         return(
           <div className="loginBox custom">
              <div className="custom-pad-0-25 mt80">
+             {/* <div id="mmk">{kl}</div> */}
              {/* <button onClick={this.sendToWebview} id="button">发送数据到react native</button>
               <p >收到react native发送的数据: <span id="data"></span></p> */}
              <Reg {...this.props} onSubmit={this.submit.bind(this)} />
-                 
+             
              </div>
              
           </div>

@@ -42,6 +42,13 @@ class TabBarExample extends Component {
   }
 
   render() {
+    // if(!localStorage.getItem('UT')){
+    //   const { dispatch } = this.props;
+    //   dispatch({
+    //     type:
+    //   })
+    //   return false;
+    // }
     const { dispatch,page } = this.props;
     return (
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { position: 'fixed', height: '100%', width: '100%', top: 0 }}>
@@ -68,11 +75,16 @@ class TabBarExample extends Component {
             {this.renderContent(<Index />)}
           </TabBar.Item>
           <TabBar.Item
-            icon={<i className="iconfont icon-saoyisao fz-md"></i>}
-            selectedIcon={<i className="iconfont icon-saoyisao fz-md"></i>}
-            title="扫码/支付"
+            title='扫码/支付'
+            icon={
+            <div className='hatest'>
+                <div className='kjh'></div>
+                <i className="testcss iconfont icon-saoyisao fz-md"></i>
+            </div>}
+            selectedIcon={<div className='hatest'><div className='kjh'></div><i className="testcss iconfont icon-saoyisao fz-md"></i></div>}
+            //title="扫码/支付"
             key="Koubei"
-            
+
             selected={this.props.page.selectedTab === 'redTab'}
             onPress={() => {
               dispatch({
@@ -97,8 +109,9 @@ class TabBarExample extends Component {
               })
             }}
           >
-            
-            {this.renderContent(<User />)}
+
+            {/* {this.props.page.selectedTab === 'yellowTab'?this.renderContent(<Redirect to='/user' />):''} */}
+            {this.props.page.selectedTab === 'yellowTab'?this.renderContent(<User />):''}
           </TabBar.Item>
         </TabBar>
       </div>

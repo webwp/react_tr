@@ -29,23 +29,18 @@ function renderTabBar(props) {
 
 class Index extends Component {
     submit = (value) => {
-      
-          
-              value.phone = value.phone.replace(/\s+/g,"");
-              // console.log(value);
-              let dispatch_typs = value.password ? 'user/login' : 'user/loginCode'
-              if(value.password){
+        value.phone = value.phone.replace(/\s+/g,"");
+        let dispatch_typs = value.password ? 'user/login' : 'user/loginCode'
+        if(value.password){
 
-              }
-              const { dispatch } = this.props;
-              dispatch({
-                type: 'user/login',
-                payload: {
-                  ...value
-                }
-              });
-          
-        
+        }
+        const { dispatch } = this.props;
+        dispatch({
+          type: 'user/login',
+          payload: {
+            ...value
+          }
+        });
     }
     handleMessage(e) {
       this.setState({webViewData: e.nativeEvent.data});
@@ -60,10 +55,13 @@ class Index extends Component {
     }
 
     render(){
-        console.dir(this.props.history)
+        const { app } = this.props;
+        if(app.res){
+           app.res.code=='SUCCESS' ? this.props.history.goBack():Toast.info(app.res.msg);
+        }
         return(
           <div className="loginBox custom">
-            <Header {...this.props} />
+            <Header {...this.props} headerTxt='登录' />
             <StickyContainer className='custom-pad-0-25 mt80' style={{height:'60%'}}>
                 <Tabs tabs={tabs}
                   initalPage={'t2'}
@@ -75,12 +73,9 @@ class Index extends Component {
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',padding:'15px 0', backgroundColor: '#fff' }}>
                       <LoginPassword {...this.props} onSubmit={this.submit.bind(this)}/>
                   </div>
+                  
                 </Tabs>
-                <div className="marginBottom">
-                    <a href="#/reg" >新用户注册</a>
-                    <a href="#/">首页</a>
-                    {/* <Button onClick={()=>{this.props.history.goBack()}}>返回</Button> */}
-                </div>
+                
             </StickyContainer>
 
                 

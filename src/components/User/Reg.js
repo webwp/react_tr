@@ -27,7 +27,7 @@ class Reg extends Component{
             content:"协议内容",
             modalTitle:"《出行南宁会员服务协议》",
             codeText:'获取验证码',
-            disabled:false
+            disabled:false,
         };
     }
     onClose = key => () => {
@@ -74,10 +74,10 @@ class Reg extends Component{
     }
     //获取手机验证码
     getCode = (e)=>{
-        
         const phone = this.Phone.props.value,
               { dispatch } = this.props;
-        if( typeof phone != "undefined" || phone != null){
+        
+        if( typeof(phone) != 'undefined' ){
             dispatch({
                 type:'user/code',
                 payload:{phone:phone.replace(/\s+/g,"")}
@@ -105,7 +105,6 @@ class Reg extends Component{
         
     }
     checkPassword = (value) => {
-        console.log(this);
          let rePassword = this.rePassword;
          if(value !=rePassword.props.value){
              this.setState({
@@ -128,7 +127,7 @@ class Reg extends Component{
                           
                 <InputItem
                     {...getFieldProps('phone', {
-                    rules: [{required: true, message: '手机号码或者帐户名不能为空'}],
+                    rules: [{required: true, message: '手机号码不能为空'},{min: 13, message: '11位手机号码'}],
                     })}
                     clear
                     type="phone"
@@ -137,7 +136,7 @@ class Reg extends Component{
                     name="phone"
                     error={(errors = getFieldError('phone'))}
                 >手机号</InputItem>
-
+                {/* {(errors = getFieldError('phone')) ? errors.join(',') : null} */}
                 <InputItem
                     {...getFieldProps('code', {
                     rules: [{required: true, message: '验证码不能为空'}],
@@ -149,11 +148,12 @@ class Reg extends Component{
                     style={{width:'70%'}}
                 >验证码<Button disabled={this.state.disabled} type='primary' className="getCode" onClick={this.getCode} size='small'>{this.state.codeText}</Button></InputItem>
 
-                {/* {(errors = getFieldError('password')) ? errors.join(',') : null} */}
+                
                 <WhiteSpace />
                 <InputItem
                     {...getFieldProps('password', {
-                    rules: [{required: true, message: '手机号码或者帐户名不能为空'}],
+                    rules: [{required: true, message: '密码不能为空'},{regExp:/^[a-zA-Z]\w{5,17}$/,message:'fu'}
+                      ],
                     })}
                     clear
                     type="password"
@@ -161,12 +161,14 @@ class Reg extends Component{
                     ref={el => this.rePassword = el}
                     error={(errors = getFieldError('password'))}
                 >密码</InputItem>
+                {(errors = getFieldError('password')) ? errors.join(',') : null}
                 <WhiteSpace />
                 <InputItem
-                    {...getFieldProps('repassword', {
-                    rules: [{required: true, message: '手机号码或者帐户名不能为空'}],
+                    {...getFieldProps('repassword', {trigger:'onChange',
+                    rules: [{required: true, message: '密码不一致'}],
                     })}
                     clear
+                    onBlur={this.checkPassword}
                     type="password"
                     placeholder="重复密码"
                     //onChange={this.checkPassword}
@@ -174,6 +176,7 @@ class Reg extends Component{
                     //ref={el => this.autoFocusInst = el}
                     error={this.state.hasError}
                 >重复密码</InputItem>
+                {(errors = getFieldError('repassword')) ? errors.join(',') : null}
                 <WhiteSpace />
                 <Flex>
                     <Flex.Item>

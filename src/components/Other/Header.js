@@ -5,11 +5,12 @@ class Header extends Component{
     render(){
         return(
             <NavBar
+                className='custom-nav'
                 mode="dark"
                 leftContent={<Icon type="left" onClick={()=>{this.props.history.goBack()}} />}
                 rightContent=''
             >
-                NavBar
+                {this.props.headerTxt}
             </NavBar>
         )
     }

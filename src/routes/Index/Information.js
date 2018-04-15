@@ -13,7 +13,7 @@ class Information extends Component{
     render(){
         return (
             <div className="mt10 contents Shortcut">
-                <div className="sub-title"><a href="" className='right' style={{color:'#999',fontSize:'12px'}}>更多</a><span className="icon-other"></span>资讯</div>
+                <div className="sub-title"><a href="#/information" className='right' style={{color:'#999',fontSize:'12px'}}>更多</a><span className="icon-other"></span>资讯</div>
                 <ul className="custom_list">
                 {
                   data.map((item,key)=>(

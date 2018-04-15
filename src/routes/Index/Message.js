@@ -12,7 +12,7 @@ class Messages extends Component{
                      <img src='https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png' style={{'width':'48px','height':'48px'}} />
                  </div>
                  <div className="right" style={{"lineHeight":"55px",'color':'#666'}}>
-                     <i className="iconfont icon-gengduo fz-sm"></i>
+                     <a href="#/message"><i className="iconfont icon-gengduo fz-sm"></i></a>
                  </div>
                  <div className="center padding-left-74">
                      <ul className="ulList">

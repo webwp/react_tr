@@ -5,16 +5,81 @@ html,body,#root {
 ul,li,p ,h1,h2,h3,h4,h5,h6,h7{padding: 0; margin: 0}
 
 .loginBox {background: #fff}
+/*
+* 标准色
+*/
+/*大面积使用 使用于突出标题栏*/
+.bg-color-big {background: #39bc30!important}
+/*小面积使用 用于特别需要强调和突出的按钮*/
+.bg-color-sm  {background: #00b839!important}
+/*小面积使用 用于特别需要强调和突出的文字及描边*/
+.txt-color-warn {color:#f85b58!important}
+/*用于重要级文字信息、内容标题信息*/
+.txt-color-extrude {color:#b1b1b1!important} 
+/*用于一般段落信息*/
+.txt-color-stage {color:#555555!important}
+/*用于辅助、次要的文字信息*/
+.txt-color-assist {color:#696969!important}
+/*用于个别辅助信息*/
+.txt-color-assist-sm {color:#999999!important}
+/**/
+.txt-color-default {color:#bbbbbb!important}
+/**/
+.txt-color-divider {color:#eeeeee!important}
+/**/
+.box-bg {background: #f5f5f5}
 
+.box-border-bottom {border-bottom: 1px solid #eeeeee}
+.box-containt {padding: 15px 0}
+.custom-nav-sibling-top { padding-top:45px }
 
+.custom-card{ margin: 0 15px; background: #fff; display: block}
+.custom-card dl { overflow: hidden;}
+.custom-card dl dt {float: left; width: 80px; height:80px; text-align: center; background: #108ee9; color:#F5F5F5;}
+.custom-card dl dt div {line-height: 10px;padding-top:15px}
+.custom-card dl dd {margin-left: 80px; padding: 15px 15px 0 15px; }
+.custom-card dl dd p { vertical-align: bottom; padding-top:15px}
 
+a {color:#555555; display: block}
+/*
+*标准字
+*/
+/*用户顶部标题和操作按钮*/
+.fz-important-md {font-size: 36px!important;line-height: 45px;}
+.fz-important-sm {font-size: 30px!important;line-height: 45px;}
+/*用在少数重要标题*/
+.fz-general-md {font-size: 28px!important; line-height: 40px;}
+.fz-general-sm {font-size: 26px!important; line-height: 36px;}
+/*用于大多数文字*/
+.fz-weak-md {font-size: 24px!important;line-height: 36px;}
+.fz-weak-sm {font-size: 20px!important;line-height: 30px;}
 
+.fz-mini-md {font-size: 20px!important;line-height: 36px;}
+.fz-mini-sm {font-size: 16px!important;line-height: 30px;}
+
+.fz-small-md {font-size: 14px!important;line-height: 36px;}
+.fz-small-sm {font-size: 12px!important;line-height: 30px;}
+/*用在需求图表下文字、辅助文字*/
 .loginBox { height:100%;width: 100%; display: inline-block }
 /* .loginBox .am-list { padding: 0 40px} */
+.txt-c {text-align: center}
+.txt-l {text-align: left}
+.txt-r {text-align: right}
+.lineH {line-height: normal}
+
+.custom-box { background: #fff; padding: 15px; line-height: 30px }
+
+.custom-nav {position: fixed;width: 100%;z-index: 2;}
 
 .loginInput {
     padding:20px;
 }
+.my-radio .am-radio {
+    padding: 2.5px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
 
 .loginImg { padding: 15px 0; text-align: center; margin-top: 10px}
 
@@ -168,6 +233,59 @@ strong , h4 {font-weight: normal !important;}
 .custom_list li>div {margin-left: 90px; overflow: hidden; padding:10px 0; }
 .custom_list li>div h4 { font-weight: normal;}
 .custom_list li div p {color:#ccc; margin-top: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif}
+
+.circle2 {
+    width: 100%;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 50% 50% 0 0/100% 100% 0 0;
+    border-bottom: none;
+}
+.hatest {
+    position: relative;
+    margin-top: -18px;
+    width: 50px;
+    /* height: 60px; */
+    z-index: 1;
+    display: inline;
+    padding: 5px;
+    border-top: 1px solid #dbdbdb;
+    background: #fff;
+    border-radius: 100% 100% 0 0;
+    border-bottom: none;
+}
+.kjh {
+    margin:  5px -10px 0 -10px;
+    background: #fff;
+    text-align: center;
+    /* padding-top: 5px; */
+}
+.hatest i { color:#fff !important; margin-top: -10px}
+.testcss{
+    
+    background: -moz-linear-gradient(top,  rgb(57,242,47) 0%, rgb(16, 141, 10) 100%);
+    background: -webkit-linear-gradient(top,  rgb(57,242,47) 0%, rgb(16, 141, 10) 100%);
+    background: -o-linear-gradient(top, rgb(57,242,47) 0%, rgb(16, 141, 10) 100%);
+    background: -ms-linear-gradient(top, rgb(57,242,47) 0%, rgb(16, 141, 10) 100%);
+    background: linear-gradient(to bottom,  rgb(57,242,47) 0%, rgb(16, 141, 10) 100%);
+    border-radius: 100%;
+    padding: 6px;
+} 
+
+.gradient{
+    background: #000000;
+    background: -moz-linear-gradient(top,  #000000 0%, #ffffff 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#000000), color-stop(100%,#ffffff));
+    background: -webkit-linear-gradient(top,  #000000 0%,#ffffff 100%);
+    background: -o-linear-gradient(top,  #000000 0%,#ffffff 100%);
+    background: -ms-linear-gradient(top,  #000000 0%,#ffffff 100%);
+    background: linear-gradient(to bottom,  #000000 0%,#ffffff 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff',GradientType=0 );
+}
+:root .gradient{filter:none;}
+
+
+
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
     .custom .am-list-body {border:none !important;background-color:#fff !important; height:0PX !important}
     /*html:not([data-scale]) .am-list-item:not(:last-child) .am-list-line::after {
@@ -180,3 +298,118 @@ strong , h4 {font-weight: normal !important;}
         background-color: #fff!important
     }
   }
+.custom-form .am-input-item { padding-left:15px!important}
+
+  /*--相关的单选复选按钮--*/
+@keyframes hover-color {
+    from {
+      border-color: #c0c0c0; }
+    to {
+      border-color: #3e97eb; } }
+  .opt label {display: inline!important; margin-right: 10px}
+  .magic-radio,
+  .magic-checkbox {
+    position: absolute;
+    display: none; }
+  
+  .magic-radio[disabled],
+  .magic-checkbox[disabled] {
+    cursor: not-allowed; }
+  
+  .magic-radio + label,
+  .magic-checkbox + label {
+    position: relative;
+    display: block;
+    padding-left: 30px;
+    cursor: pointer;
+    vertical-align: middle; }
+    .magic-radio + label:hover:before,
+    .magic-checkbox + label:hover:before {
+      animation-duration: 0.4s;
+      animation-fill-mode: both;
+      animation-name: hover-color; }
+    .magic-radio + label:before,
+    .magic-checkbox + label:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      content: '';
+      border: 1px solid #c0c0c0; }
+    .magic-radio + label:after,
+    .magic-checkbox + label:after {
+      position: absolute;
+      display: none;
+      content: ''; }
+  
+  .magic-radio[disabled] + label,
+  .magic-checkbox[disabled] + label {
+    cursor: not-allowed;
+    color: #e4e4e4; }
+    .magic-radio[disabled] + label:hover, .magic-radio[disabled] + label:before, .magic-radio[disabled] + label:after,
+    .magic-checkbox[disabled] + label:hover,
+    .magic-checkbox[disabled] + label:before,
+    .magic-checkbox[disabled] + label:after {
+      cursor: not-allowed; }
+    .magic-radio[disabled] + label:hover:before,
+    .magic-checkbox[disabled] + label:hover:before {
+      border: 1px solid #e4e4e4;
+      animation-name: none; }
+    .magic-radio[disabled] + label:before,
+    .magic-checkbox[disabled] + label:before {
+      border-color: #e4e4e4; }
+  
+  .magic-radio:checked + label:before,
+  .magic-checkbox:checked + label:before {
+    animation-name: none; }
+  
+  .magic-radio:checked + label:after,
+  .magic-checkbox:checked + label:after {
+    display: block; }
+  
+  .magic-radio + label:before {
+    border-radius: 50%; }
+  
+  .magic-radio + label:after {
+    top: 7px;
+    left: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3e97eb; }
+  
+  .magic-radio:checked + label:before {
+    border: 1px solid #3e97eb; }
+  
+  .magic-radio:checked[disabled] + label:before {
+    border: 1px solid #c9e2f9; }
+  
+  .magic-radio:checked[disabled] + label:after {
+    background: #c9e2f9; }
+  
+  .magic-checkbox + label:before {
+    border-radius: 3px; }
+  
+  .magic-checkbox + label:after {
+    top: 2px;
+    left: 7px;
+    box-sizing: border-box;
+    width: 6px;
+    height: 12px;
+    transform: rotate(45deg);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+    border-top: 0;
+    border-left: 0; }
+  
+  .magic-checkbox:checked + label:before {
+    border: #3e97eb;
+    background: #3e97eb; }
+  
+  .magic-checkbox:checked[disabled] + label:before {
+    border: #c9e2f9;
+    background: #c9e2f9; }
+  

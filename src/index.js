@@ -10,7 +10,7 @@ const app = dva();
 // app.use({});
 
 // 3. Model
-const models=['User','IndexPage'];
+const models=['User'];
 models.forEach((model)=>{
     app.model(require(`./models/${model}`).default);
 })

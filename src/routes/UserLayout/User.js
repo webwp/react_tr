@@ -8,10 +8,6 @@ import User from '../../components/User';
 }))
 class Index extends Component{
     render(){
-        const { userInfo } = this.props.user;
-        if(userInfo == null || userInfo == ''){
-            return <Redirect to='/login' />;
-        }
         return(
            <User {...this.props} /> 
         )

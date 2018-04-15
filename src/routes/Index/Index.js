@@ -22,6 +22,7 @@ class Index extends Component {
                 <Message />
                 
                 <Shortcut />
+                {/* 资讯 */}
                 <Information />
                 <div className="line-Division"><span>我是底线君</span></div>
             </div>

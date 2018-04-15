@@ -13,7 +13,7 @@ const data = [
     {
         icon:'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
         text:'红包/卡券',
-        other:''
+        other:'#/user/coupons/0'
     },
     {
         icon:'',
@@ -23,11 +23,10 @@ const data = [
 ]
 
 class Index extends Component{
-    constructor(){
-        super();
-        this.state={
-            phone:'',
-            authentication:false
+    constructor(props){
+        super(props);
+        this.state = {
+            user:''
         }
     }
     handleuUserLogout = ()=>{
@@ -37,35 +36,32 @@ class Index extends Component{
             payload:''
         })
     }
-    componentWillMount(){
-        const { user } = this.props;
-        const { userInfo } = user;
-        //
-        if(userInfo !=null || userInfo != ''){
-            this.setState({
-                phone:userInfo.phone
-            })
-        }
-    }
+    
     render(){
+        const { user } = this.props;
+        if(user.res){
+            Toast.info(user.res.msg)
+        }
         return(
             <div className="result-example custom">
                 <Result
                 img={myImg('../src/assets/user_1206721_easyicon.net.svg')}
-                title={"用户名:"+this.state.phone}
-                message={this.state.authentication != true ? <Button type="" inline size="small">实名认证</Button>:'认证用户'}
+                title={user.userInfo!=null?user.userInfo.phone:"游客"}
+                message = {user.userInfo!=null?<Button type="" inline size="small">实名认证</Button>:<a href='#/login'>登录/注册</a>}
                 />
 
-                <Grid 
-                    data={data} 
-                    columnNum='3' 
-                    hasLine={false} 
+                <Grid
+                    data={data}
+                    columnNum='3'
+                    hasLine={false}
                     renderItem={dataItem => (
                         <div style={{ padding: '12.5px' }}>
+                         <a href={dataItem.other}>
                           {typeof dataItem.other=='number'?<strong style={{ width:'100%',height:'48px','display':'inline-block','lineHeight':'48px','color':'red'}}>{dataItem.other}</strong>:<img src={dataItem.icon} style={{ width: '48px', height: '48px' }} alt="" />}
                           <div style={{ color: '#888', fontSize: '14px', marginTop: '12px' }}>
                             <span>{dataItem.text}</span>
                           </div>
+                          </a>
                         </div>
                       )}
                 />
@@ -73,8 +69,19 @@ class Index extends Component{
                     <Item
                         thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
                         arrow="horizontal"
+                        extra="李四"
                         onClick={() => {}}
-                    >账单</Item>
+                    >实名认证</Item>
+                    <Item
+                        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                        arrow="horizontal"
+                        onClick={() => {}}
+                    ><a href="#/user/bill/0">账单</a></Item>
+                    <Item
+                        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                        arrow="horizontal"
+                        onClick={() => {}}
+                    ><a href="#/user/contactinfo/0">常用游客信息</a></Item>
                     <Item
                         thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
                         arrow="horizontal"
@@ -85,6 +92,12 @@ class Index extends Component{
                         arrow="horizontal"
                         onClick={() => {}}
                     >意见反馈</Item>
+                    <Item
+                        thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
+                        arrow="horizontal"
+                    >
+                    <a href="#/user/about">关于我们</a>
+                    </Item>
                     <Item
                         thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
                         onClick={this.handleuUserLogout}
