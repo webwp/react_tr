@@ -25,7 +25,8 @@ function RouterConfig({ history , app }) {
       component: () => import('./routes/UserLayout/User'),
     },
     {
-      path: '/user/coupons/:id',  //红包卡券
+      path: '/user/coupons',  //红包卡券
+      models: () => [require('./models/Coupons').default],
       component: () => import('./routes/UserLayout/Coupons/'),
     },
     {
