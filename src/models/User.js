@@ -1,4 +1,4 @@
-import { userLogin,userReg,getCode,userLogout,userLoginCode,reSetPassword ,updateUser,alreadyUser} from '../services/User';
+import { userLogin,userReg,getCode,userLogout,userLoginCode,reSetPassword ,updateUser,alreadyUser,getCoupons} from '../services/User';
 import { routerRedux,Redirect,Switch } from 'dva/router';
 import { Toast } from 'antd-mobile';
 

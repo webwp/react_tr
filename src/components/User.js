@@ -14,7 +14,7 @@ const data = [
     {
         icon:'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
         text:'红包/卡券',
-        other:'#/user/coupons/0'
+        other:'#/user/coupons'
     },
     {
         icon:'',
