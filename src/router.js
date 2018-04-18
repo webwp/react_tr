@@ -104,7 +104,7 @@ function RouterConfig({ history , app }) {
     },
     {
       path: '/guide',
-      //models: () => [import('./models/User')],
+      models: () => [import('./models/Guide')],
       component: () => import('./routes/Guide/Index'),
     },
     {
