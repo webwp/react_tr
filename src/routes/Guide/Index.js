@@ -1,10 +1,14 @@
 import React , { Component } from 'react';
 import { List } from 'antd-mobile';
 
-import Header from '../../components/Other/Header';
+import { connect } from 'dva';
+import Page from '../../components/Page';
+
 
 const Item = List.Item;
-
+@connect(state=>({
+    Guide:state.guide
+}))
 class Index extends Component{
     constructor(props){
         super(props);
@@ -13,26 +17,26 @@ class Index extends Component{
         }
         
     }
+    getDetail = (url)=>{
+        const {  history } = this.props;
+        url == null ? '':history.push(url);
+    }
 
     render(){
-        const list = [
-            {title:'使用扫码搭乘公交车指南',url:'#/guide/detail/6'},
-            {title:'夜游南宁，游船订票攻略',url:''},
-            {title:'桂A牌南宁停车场快速停车缴费指南',url:''},
-            {title:'快速预约车险',url:''},
-        ];
+        const { history , Guide } = this.props;
+        const { dataList } = Guide;
+        console.log(Guide)
         return(
-          <div>
-                <Header {...this.props} headerTxt='出行指南' />
-                <div className='custom-nav-sibling-top'>
+          <Page title="出行指南" history={history}>
+                
+                
                 <List className="my-list">
-                  {list.map((item,index)=>{
-                     return <Item key={index} arrow="horizontal" onClick={() => {}}><a style={{display:'block'}} href={item.url}>{item.title}</a></Item>
+                  {dataList == null ? '没有数据':dataList.map((item,index)=>{
+                     return <Item key={index} arrow="horizontal" onClick={()=>{this.getDetail(item.uri)}}><a style={{display:'block'}} href={item.uri}>{item.title}</a></Item>
                   })}
                     
                 </List>
-                </div>
-          </div>
+          </Page>
         )
     }
 }
