@@ -102,11 +102,7 @@ class Index extends Component {
       Toast.loading(msg, 1, (msg) => {});
     }
     
-    submit = () => {
-      
-          this.props.form.validateFields((error, value) => {
-            if(!error){
-                //提交的手机号码为180 0780 3076，标准状态需要清楚空格
+    submit = (value) => {
                 value.phone = value.phone.replace(/\s+/g,"");
                 //对提交的密码进行简单加密处理
                 //value.password = PasswordEncryption(value.password);
@@ -117,12 +113,6 @@ class Index extends Component {
                     ...value
                   }
                 })
-            }
-          });
-    }
-    componentWillMount(){
-      //alert(navigator.userAgent);
-  //localStorage.removeItem('TEST')
     }
    
     backPage = ()=>{
@@ -140,11 +130,7 @@ class Index extends Component {
         return(
           <div className="loginBox custom">
              <div className="custom-pad-0-25 mt80">
-             {/* <div id="mmk">{kl}</div> */}
-             {/* <button onClick={this.sendToWebview} id="button">发送数据到react native</button>
-              <p >收到react native发送的数据: <span id="data"></span></p> */}
-             <Reg {...this.props} onSubmit={this.submit.bind(this)} />
-             
+                <Reg {...this.props} onSubmit={this.submit.bind(this)} />
              </div>
              
           </div>

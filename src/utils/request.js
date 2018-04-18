@@ -2,6 +2,7 @@ import fetch from 'dva/fetch';
 import axios from 'axios';
 import QS from 'query-string';
 import { Toast } from 'antd-mobile';
+import { redirectLogin } from './auth'
 
 function parseJSON(response) {
   return response.json();
@@ -26,7 +27,10 @@ function checkStatus(response) {
  */
 export default function request(url, options) {
 
-  let UT = localStorage.getItem('UT') || '';
+  let UT = JSON.parse(localStorage.getItem('UT')) || '';
+  if(UT!=''){
+    UT = UT.value;
+  }
   //return;
   //请求方式为POST时使用data:{}方式传递参数，使用GET方式时用params:{}方式
   let methodData = options.method=='get' || "GET" ? {params:options.body}:{data:options.body};
@@ -50,15 +54,15 @@ export default function request(url, options) {
     return response.data;
   })
   .catch(function(err){
-    //console.log(err.response);
+    console.log("requ:",err.response);
     const {status, data} = err.response || {};
     //收集错误信息 通过Toast进行系统提示
     let errs = '';
     for(var index in data.errors){
        errs +=data.errors[index];
-       
     }
-    Toast.fail(data.msg + errs, 3);
+     //未登录需登录 
+     data.code === 'AUTH_FORBIDDEN' ? redirectLogin() : Toast.fail(data.msg + errs, 3);
     //返回错误数据信息
     return {status, data};
   });

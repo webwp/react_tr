@@ -22,14 +22,12 @@ class Index extends Component{
         visible: false,
     }
     onChange = (value) => {
-        console.log('checkbox');
         this.setState({
           value,
         });
     };
     onSubmit = ()=>{
             this.props.form.validateFields((error,value)=>{
-                console.log(value,error)
                 
             })
     }
@@ -41,7 +39,6 @@ class Index extends Component{
         let errors;
         const { value } =this.state;
         const { getFieldProps, getFieldError } = this.props.form;
-        console.log('输出时间：',this.state.date)
         return (
             <div>
                  <Header {...this.props} headerTxt="修改游客信息" />
@@ -73,7 +70,7 @@ class Index extends Component{
 
                             {...getFieldProps('date')} 
                             mode="date"
-                            title="Select Date"
+                            title="选择日期"
                             extra="Optional"
                             value={this.state.date}
                             onChange={date => this.setState({ date })}

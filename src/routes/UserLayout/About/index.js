@@ -1,15 +1,18 @@
 import React , { Component } from 'react';
 import Header from '../../../components/Other/Header';
-import Detail from '../../../components/Other/Detail'
+import Detail from '../../../components/Other/Detail';
+
+import Page from '../../../components/Page'
 
 class Index extends Component {
     render(){
         return(
             <div>
-                <Header {...this.props} headerTxt='关于我们' />
-                <div className="custom-nav-sibling-top">
+                <Page title="关于我们" history={this.props.history}>
+                {/* <div className="custom-nav-sibling-top"> */}
                      <Detail />
-                </div>
+                {/* </div> */}
+                </Page>
             </div>
         )
     }

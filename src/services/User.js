@@ -7,7 +7,7 @@ import publicProInterface from '../common/publicProInterface';
 
 // 用户密码登录
 export async function userLogin (params) {
-	return request(publicProInterface.requestURL+'/api/login', {
+	return request(publicProInterface.requestURL+'/client/auth/login/password', {
 		method: 'POST',
 		body: params
 	});
@@ -15,7 +15,7 @@ export async function userLogin (params) {
 
 // 用户验证码登录
 export async function userLoginCode (params) {
-	return request(publicProInterface.requestURL+'/api/login_verify_code', {
+	return request(publicProInterface.requestURL+'/client/login/captcha', {
 		method: 'POST',
 		body: params
 	});
@@ -23,7 +23,7 @@ export async function userLoginCode (params) {
 
 // 用户注册
 export async function userReg (params) {
-	return request(publicProInterface.requestURL+`/api/register`, {
+	return request(publicProInterface.requestURL+`/client/auth/register`, {
 		method: 'POST',
 		body: params
 	});
@@ -39,8 +39,30 @@ export async function userLogout (params) {
 
 // 短信验证获取
 export async function getCode (params) {
-	return request(publicProInterface.requestURL+`/api/register_verify_code`,{
+	return request(publicProInterface.requestURL+`/client/captcha/sms`,{
 		method:"POST",
+		body:params
+	})
+}
+
+// 重置密码
+export async function reSetPassword (params) {
+	return request(publicProInterface.requestURL+`/client/auth/password/reset`,{
+		method:"POST",
+		body:params
+	})
+}
+///client/profile/info
+export async function updateUser (params) {
+	return request(publicProInterface.requestURL+`/client/profile/info`,{
+		method:"POST",
+		body:params
+	})
+}
+//获取已登录用户信息
+export async function alreadyUser (params) {
+	return request(publicProInterface.requestURL+`/client/profile/info`,{
+		method:"GET",
 		body:params
 	})
 }

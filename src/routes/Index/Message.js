@@ -1,11 +1,23 @@
 import React , { Component } from 'react';
 import { List } from 'antd-mobile';
+import { connect } from 'dva'
 
 const Item = List.Item;
 const Brief = Item.Brief;
 
+@connect(state => ({
+    Message:state.index
+}))
 class Messages extends Component{
+    componentWillMount(){
+        const {dispatch}=this.props
+        dispatch({
+            type:'index/messages',
+            payload:{page:1,per_page:2}
+        })
+    }
     render(){
+        const { Message } = this.props;
         return (
             <div className="mt10 contents">
                  <div className="left">
@@ -16,8 +28,13 @@ class Messages extends Component{
                  </div>
                  <div className="center padding-left-74">
                      <ul className="ulList">
-                         <li>您有一笔停车费用需要支付您有一笔停车费用需要支付</li>
-                         <li>您有一待出游的订单</li>
+                     {Message.message!=null ? 
+                          Message.message.data.data.map((item,index)=>(
+                              <li>{item.message}</li>
+                          ))
+                          :
+                          ''
+                     }
                      </ul>
                  </div>
             </div>

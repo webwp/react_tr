@@ -21,7 +21,7 @@ class LoginPassword extends Component{
                      //value.password = PasswordEncryption(value.password);
                      this.props.onSubmit(value);
                  }else{
-                     this.props.onSubmit({});
+                     this.props.onSubmit();
                  }
             })
         

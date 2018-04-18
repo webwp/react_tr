@@ -12,28 +12,13 @@ class Search extends Component {
             height:document.documentElement.clientHeight
         }
     }
-    // handleSrcoll(e){
-    //     console.log(document.documentElement)
-    //     console.log('::',document.documentElement.getBoundingClientRect().top)
-    // }
-    // componentDidMount(){
-    //     const _this = this;
-    //     const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
-    //     window.addEventListener('wheel',_this.handleSrcoll.bind(this))
-    //     console.log(hei)
-    // }
     
     render(){
-        // const list = {
-        //     'icon-saoyisao':'扫一扫', 'icon-erweima':'二维码', 'icon-cheliang':'车辆',
-        //     'icon-wodehongbao':'红包/卡券'
-        // }
         const list = {
             'icon-saoyisao':'扫一扫', 'icon-erweima':'二维码',
         };;
         let data = [];
         for(var item in list){
-            console.log(item,list[item])
             let classType='iconfont '+item;
             let res = {icon:(<i className={classType}></i>),text:''} //list[item]
             data.push(res);

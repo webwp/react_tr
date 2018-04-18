@@ -55,9 +55,9 @@ class Reg extends Component{
     submit = ()=>{
         if(this.props.onSubmit){
             this.props.form.validateFields((error,value)=>{
-                console.log(value)
                 if(value.password == value.repassword){
                     if(!error){
+                        value.register_from = 'wechat';
                         this.props.onSubmit(value);
                     }else{
                         this.props.onSubmit({});
@@ -80,14 +80,14 @@ class Reg extends Component{
         if( typeof(phone) != 'undefined' ){
             dispatch({
                 type:'user/code',
-                payload:{phone:phone.replace(/\s+/g,"")}
+                payload:{phone:phone.replace(/\s+/g,""),type:1}
             })
             Toast.loading();
             let _this = this,times = 10;
             let index = setInterval(function(){
                 Toast.hide();
                 _this.setState({
-                    codeText:times<10 ? '0'+times+'秒后可获取':times+'秒后可获取',
+                    codeText:times<60 ? '0'+times+'秒后可获取':times+'秒后可获取',
                     disabled:true
                 })
                 times--;
@@ -138,7 +138,7 @@ class Reg extends Component{
                 >手机号</InputItem>
                 {/* {(errors = getFieldError('phone')) ? errors.join(',') : null} */}
                 <InputItem
-                    {...getFieldProps('code', {
+                    {...getFieldProps('sms_captcha', {
                     rules: [{required: true, message: '验证码不能为空'}],
                     })}
                     clear

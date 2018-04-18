@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import { Button,Result, Icon, WhiteSpace,List } from 'antd-mobile';
+import { Link } from 'dva/router'
+import { Button,Result, Icon, WhiteSpace,List,Badge } from 'antd-mobile';
 import { Modal, WingBlank, Toast,Grid } from 'antd-mobile';
 
 const Item = List.Item;
@@ -39,16 +40,23 @@ class Index extends Component{
     
     render(){
         const { user } = this.props;
-        if(user.res){
-            Toast.info(user.res.msg)
-        }
         return(
             <div className="result-example custom">
-                <Result
-                img={myImg('../src/assets/user_1206721_easyicon.net.svg')}
-                title={user.userInfo!=null?user.userInfo.phone:"游客"}
-                message = {user.userInfo!=null?<Button type="" inline size="small">实名认证</Button>:<a href='#/login'>登录/注册</a>}
-                />
+                
+                     
+                <div className="am-result">
+                    <div className='custom-user'>
+                        <Badge text={10} className='left'>
+                            <Link className='left' badge={1} to='/message'><i className="iconfont icon-xiaoxi"></i></Link>
+                        </Badge>
+                        <Link className='right' to='/user/set'><i className="iconfont icon-setup"></i></Link>
+                    </div>
+                    <div className="am-result-pic">
+                        <img src="../src/assets/user_1206721_easyicon.net.svg" className="spe am-icon am-icon-md" alt="" style={{height: '60px', width: "60px"}} />
+                    </div>
+                    <div className="am-result-title">{user.userInfo!=null?user.userInfo.phone:"游客"}</div>
+                    <div className="am-result-message">{user.userInfo!=null?<Button type="" inline size="small">实名认证</Button>:<Link to='/login'>登录/注册</Link>}</div>
+                </div>
 
                 <Grid
                     data={data}
@@ -98,13 +106,7 @@ class Index extends Component{
                     >
                     <a href="#/user/about">关于我们</a>
                     </Item>
-                    <Item
-                        thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
-                        onClick={this.handleuUserLogout}
-                        arrow="horizontal"
-                    >
-                    退出当前帐号
-                    </Item>
+                    
                 </List>
             </div>
         )

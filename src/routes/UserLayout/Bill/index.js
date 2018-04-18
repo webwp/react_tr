@@ -1,4 +1,6 @@
 import React , { Component } from 'react';
+import {  connect } from 'dva'
+import {  Link } from 'dva/router'
 import {List} from 'antd-mobile'
 
 import Header from '../../../components/Other/Header';
@@ -14,23 +16,37 @@ const data = [
     {id:0,title:'充电桩租用费用',business:'充电桩',money:'-10',recordTime:'04-12 18:15:36',icon:'https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png'},
     {id:0,title:'余额充值',business:'充值',money:'-10',recordTime:'04-12 18:15:36',icon:'https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png'},
 ]
-
+@connect(state=>({
+    bill:state.bill
+}))
 class Index extends Component{
+    componentWillMount(){
+        const { match , dispatch } = this.props;
+        const { id }=match.params;
+        dispatch({
+            type:'bill/getList',
+            payload:{page:0}
+        })
+    }
     render(){
+        const { bill } = this.props;
+        const { data } = !bill.data ? bill : [];
         return(
             <div>
                 <Header {...this.props} headerTxt="账单" />
                 <div className="custom-nav-sibling-top">
+                {data ? (
                 <List renderHeader={() => '本月'} className="my-list">
-                    {data.map((item,index)=>(
-                        <a href={'#/user/bill/detail/'+item.id}>
+                    {  data.map((item,index)=>(
+                        <Link to={'#/user/bill/detail/'+item.id} key={index}>
                             <Item extra={item.money} align="top" thumb={item.icon} multipleLine>
                             {item.title} <Brief>{item.business}</Brief><Brief>{item.recordTime}</Brief>
                             </Item>
-                        </a>
+                        </Link>
                     ))}
                     
                 </List>
+                ) : <p className='txt-c txt-color-assist no-data'>无相关数据</p>}
                 </div>
             </div>
         )

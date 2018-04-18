@@ -36,7 +36,7 @@ class LoginCode extends Component{
         if( typeof phone != "undefined" || phone != null){
             dispatch({
                 type:'user/code',
-                payload:{phone:phone.replace(/\s+/g,"")}
+                payload:{phone:phone.replace(/\s+/g,""),type:2}
             })
             Toast.loading();
             let _this = this,times = 10;
@@ -78,7 +78,7 @@ class LoginCode extends Component{
                     error={(errors = getFieldError('phone'))}
                 >手机号</InputItem>
                 <InputItem
-                    {...getFieldProps('code', {
+                    {...getFieldProps('sms_captcha', {
                     rules: [{required: true, message: '验证码不能为空'}],
                     })}
                     clear
@@ -88,7 +88,7 @@ class LoginCode extends Component{
                     style={{width:'70%'}}
                 >验证码<Button disabled={this.state.disabled} type='primary' className="getCode" onClick={this.getCode} size='small'>{this.state.codeText}</Button></InputItem>
 
-                {(errors = getFieldError('code')) ? errors.join(',') : null}
+                {(errors = getFieldError('sms_captcha')) ? errors.join(',') : null}
                 <WhiteSpace />
                 <div style={{"display": "block",'height':'35px'}}>
                     <AgreeItem

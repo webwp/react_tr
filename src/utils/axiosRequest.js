@@ -31,14 +31,17 @@ function checkStatus(response) {
  */
 export default function request(url, options) {
 
-  let JWT = localStorage.getItem('UT') || '';
+  let JWT = JSON.parse(localStorage.getItem('UT')) || '';
+  if(JWT!=''){
+    JWT = JWT.value;
+  }
   //return;
   //请求方式为POST时使用data:{}方式传递参数，使用GET方式时用params:{}方式
   let methodData = options.method=='get' || "GET" ? {params:options.body}:{data:options.body};
   //nOptions 存储axios.request(option)发送请求必须的数据option
   let nOptions = {
     headers: {
-      'Authorization': 'Bearer ' + JWT.replace(/\"/g,""),
+      'Authorization': 'Bearer ' + JWT,
     },
     timeout: 5000,
     validateStatus: function (status) {
@@ -64,7 +67,8 @@ export default function request(url, options) {
        errs +=data.errors[index];
        
     }
-    Toast.fail(data.msg + errs, 3);
+    //未登录需登录  
+    data.code === 'AUTH_FORBIDDEN' ? redirectLogin() : Toast.fail(data.msg + errs, 3);
     //返回错误数据信息
     return {status, data};
   });

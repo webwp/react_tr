@@ -42,13 +42,6 @@ class TabBarExample extends Component {
   }
 
   render() {
-    // if(!localStorage.getItem('UT')){
-    //   const { dispatch } = this.props;
-    //   dispatch({
-    //     type:
-    //   })
-    //   return false;
-    // }
     const { dispatch,page } = this.props;
     return (
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { position: 'fixed', height: '100%', width: '100%', top: 0 }}>

@@ -21,16 +21,12 @@ class IndexGrid extends Component{
             {bg:'#FF8D3A',icon:'icon-manage_fill',txt:'更多',url:''},
         ]
         let data = [];
-        //for(var item in dataTest){
         dataTest.map((item,index)=>{
             let classType='iconfont borderRadius '+item.icon;
             let res = {icon:(<a href={item.url}><i className={classType} style={{'background':item.bg}}></i></a>),text:item.txt}
             data.push(res);
             num++;
         })
-            
-        //}
-        console.log('data',data);
         return (
             <Grid className='custom_grid_other' data={data} hasLine={false}  onClick={_el => console.log(_el)} />
         )

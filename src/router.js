@@ -3,6 +3,7 @@ import { Router, Route, Switch,routerRedux } from 'dva/router';
 import dynamic from 'dva/dynamic';
 
 const {ConnectedRouter} = routerRedux;
+const setTitle = title => () => document.title = title;
 
 function RouterConfig({ history , app }) {
 
@@ -14,7 +15,7 @@ function RouterConfig({ history , app }) {
     {
       path: '/',
       //models: () => [require('./models/IndexPage').default],
-      models: () => [import('./models/IndexPage')],
+      models: () => [import('./models/IndexPage'),import('./models/Index')],
       component: () => import('./routes/IndexPage'),
     },
     {
@@ -28,7 +29,8 @@ function RouterConfig({ history , app }) {
       component: () => import('./routes/UserLayout/Coupons/'),
     },
     {
-      path: '/user/bill/:id',  //红包卡券
+      path: '/user/bill/:id',  //账单
+      models: () => [require('./models/Bill').default],
       component: () => import('./routes/UserLayout/Bill/'),
     },
     {
@@ -46,6 +48,18 @@ function RouterConfig({ history , app }) {
     {
       path: '/user/about',  //关于我们
       component: () => import('./routes/UserLayout/About/'),
+    },
+    {
+      path: '/user/set',  //用户信息设置
+      component: () => import('./routes/UserLayout/Set/'),
+    },
+    {
+      path: '/user/nickname',  //用户昵称设置
+      component: () => import('./routes/UserLayout/Set/nickname'),
+    },
+    {
+      path: '/user/repass',  //用户信息设置
+      component: () => import('./routes/UserLayout/Set/repass'),
     },
     {
       path: '/reg',
@@ -74,17 +88,17 @@ function RouterConfig({ history , app }) {
     },
     {
       path: '/information',
-      //models: () => [import('./models/User')],
+      models: () => [import('./models/Index')],
       component: () => import('./routes/Information/Index'),
     },
     {
       path: '/information/detail/:id',
-      //models: () => [import('./models/User')],
+      models: () => [import('./models/Index')],
       component: () => import('./routes/Information/Detail'),
     },
     {
       path: '/message',
-      //models: () => [import('./models/User')],
+      models: () => [import('./models/Index')],
       component: () => import('./routes/Message/Index'),
     },
     {
@@ -116,6 +130,7 @@ function RouterConfig({ history , app }) {
             routes.map(({ path, ...dynamics }, key) => (
               <Route key={key}
                 exact
+                onEnter={setTitle('业绩达成')}
                 path={path}
                 component={dynamic({
                   app,

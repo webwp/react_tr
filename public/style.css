@@ -40,6 +40,7 @@ ul,li,p ,h1,h2,h3,h4,h5,h6,h7{padding: 0; margin: 0}
 .custom-card dl dd {margin-left: 80px; padding: 15px 15px 0 15px; }
 .custom-card dl dd p { vertical-align: bottom; padding-top:15px}
 
+.no-data { line-height: 100px;}
 a {color:#555555; display: block}
 /*
 *标准字
@@ -413,3 +414,12 @@ strong , h4 {font-weight: normal !important;}
     border: #c9e2f9;
     background: #c9e2f9; }
   
+
+.custom-user {     
+    overflow: hidden;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    color: #fff;
+    padding-top: 10px
+}
+.custom-user a {color:#fff}

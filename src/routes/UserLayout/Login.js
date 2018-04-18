@@ -29,25 +29,23 @@ function renderTabBar(props) {
 
 class Index extends Component {
     submit = (value) => {
+      if(value){
         value.phone = value.phone.replace(/\s+/g,"");
-        let dispatch_typs = value.password ? 'user/login' : 'user/loginCode'
-        if(value.password){
-
-        }
+        let dispatch_typs = value.password ? 'user/login' : 'user/loginCode';
         const { dispatch } = this.props;
         dispatch({
-          type: 'user/login',
+          type: dispatch_typs,
           payload: {
             ...value
           }
         });
+      }
     }
     handleMessage(e) {
       this.setState({webViewData: e.nativeEvent.data});
     }
     loadingToast(msg) {
       Toast.loading(msg, 1, (msg) => {
-        console.log('Load complete !!!');
       });
     }
     loadingFaile(msg) {
@@ -57,8 +55,13 @@ class Index extends Component {
     render(){
         const { app } = this.props;
         if(app.res){
-           app.res.code=='SUCCESS' ? this.props.history.goBack():Toast.info(app.res.msg);
+           app.res.code==0 ? this.props.history.goBack():Toast.info(app.res.msg);
         }
+        if( app.userInfo ){
+          
+          return <Redirect to='/' />;
+        }
+        
         return(
           <div className="loginBox custom">
             <Header {...this.props} headerTxt='登录' />
