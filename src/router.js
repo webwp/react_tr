@@ -13,6 +13,10 @@ function RouterConfig({ history , app }) {
   })
   const routes = [
     {
+      path: '/input',
+      component: () => import('./input'),
+    },
+    {
       path: '/',
       //models: () => [require('./models/IndexPage').default],
       models: () => [import('./models/IndexPage'),import('./models/Index')],
@@ -39,16 +43,31 @@ function RouterConfig({ history , app }) {
       component: () => import('./routes/UserLayout/Bill/detail'),
     },
     {
-      path: '/user/Contactinfo/:id',  //常用联系人
-      component: () => import('./routes/UserLayout/ContactInfo/'),
+      path: '/user/contactinfo/',  //常用联系人
+      models: () => [require('./models/ContactInfo').default],
+      component: () => import('./routes/UserLayout/ContactInfo/index'),
+    },
+    {
+      path: '/user/Contactinfo/add',  //常用联系人
+      models: () => [require('./models/ContactInfo').default],
+      component: () => import('./routes/UserLayout/ContactInfo/add'),
     },
     {
       path: '/user/Contactinfo/editor/:id',  //编辑常用联系人
+      models: () => [require('./models/ContactInfo').default],
       component: () => import('./routes/UserLayout/ContactInfo/editor'),
     },
     {
       path: '/user/about',  //关于我们
       component: () => import('./routes/UserLayout/About/'),
+    },
+    {
+      path: '/user/mycode',  //我的二维码
+      component: () => import('./routes/UserLayout/MyCode/'),
+    },
+    {
+      path: '/user/wallet',  //钱包
+      component: () => import('./routes/UserLayout/Wallet/'),
     },
     {
       path: '/user/set',  //用户信息设置

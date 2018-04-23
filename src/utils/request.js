@@ -26,7 +26,6 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-
   let UT = JSON.parse(localStorage.getItem('UT')) || '';
   if(UT!=''){
     UT = UT.value;
@@ -54,13 +53,17 @@ export default function request(url, options) {
     return response.data;
   })
   .catch(function(err){
-    console.log("requ:",err.response);
     const {status, data} = err.response || {};
     //收集错误信息 通过Toast进行系统提示
     let errs = '';
+    // redirectLogin() 
+    // Toast.info(data,5)
+    
+    
     for(var index in data.errors){
        errs +=data.errors[index];
     }
+    //
      //未登录需登录 
      data.code === 'AUTH_FORBIDDEN' ? redirectLogin() : Toast.fail(data.msg + errs, 3);
     //返回错误数据信息

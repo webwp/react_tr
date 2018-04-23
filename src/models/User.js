@@ -1,4 +1,4 @@
-import { userLogin,userReg,getCode,userLogout,userLoginCode,reSetPassword ,updateUser,alreadyUser,getCoupons} from '../services/User';
+import { userLogin,userReg,getCode,userLogout,userLoginCode,reSetPassword ,updateUser,alreadyUser,getCoupons,Waller} from '../services/User';
 import { routerRedux,Redirect,Switch } from 'dva/router';
 import { Toast } from 'antd-mobile';
 
@@ -18,19 +18,26 @@ export default {
             r_errors:'',
             authentication:false,
             authlayout:false,
+            wallet:null
         },
     
         subscriptions: {
             setup({ dispatch, history }) {
                 const { location } = history;
-                if(location.pathname != '/' || location != '/user'){
+                if(location.pathname != '/' && location.pathname != '/user'){
                     dispatch({
                         type:'fetchUser'
                     })
+                }else{
+                    
+                    dispatch({
+                        type:'fetchConfig'
+                    })
+                    dispatch({
+                        type:'wallet'
+                    })
                 }
-                dispatch({
-                    type: 'fetchConfig'
-                });
+                
             },
         },
     
@@ -42,7 +49,16 @@ export default {
                 yield put({ type: 'save' });
             },
             *fetchUser({ payload },{ call, put }){
-                yield call(alreadyUser,payload);
+                //const response = yield call(alreadyUser,payload);
+                const UTRAFF = localStorage.getItem('UTRAFF');
+                const uTraff = !UTRAFF ? JSON.parse(UTRAFF) : null;
+
+                const nPayload = {}
+                nPayload.userInfo = uTraff;
+                yield put({
+                    type:'save',
+                    payload:{...nPayload}
+                })
             },
             *fetchConfig({ payload }, { call, put }) {
                 const UT = localStorage.getItem("UT");
@@ -117,7 +133,7 @@ export default {
                 Toast.loading('',0);
                 const response = yield call(userLoginCode,payload);
                 let nPayload = {};
-                if(response.code === 'SUCCESS'){
+                if(response.code === 0){
                     
                     Toast.hide();
                     nPayload.isLogin = true;
@@ -148,17 +164,25 @@ export default {
                     Toast.info('短信发送失败 !!!', 3);
                 }
             },
-            *logout({ payload }, { call, put }) {
-                Toast.loading('',0)
-                const isLogin = {isLogin:false};
+            *wallet({ payload }, { call,put }){
+                const response = yield call(Waller,payload)
+                const nPayload ={};
+                if(response.code === 0){
+                    nPayload.wallet = response;
+                }
+
                 yield put({
                     type:'save',
-                    payload:isLogin
+                    payload:{...nPayload}
                 })
+
+            },
+            *logout({ payload }, { call, put }) {
+                Toast.loading('',0)
+                
                 const response = yield call(userLogout);
-                console.dir(response);
                 let nPayload = {isLogin: false};
-                if(response.code == 'SUCCESS'){
+                if(response.code === 0){
                     
                     Toast.hide();
                     localStorage.removeItem('UTRAFF', '');
@@ -166,6 +190,7 @@ export default {
                     nPayload.res = response;
                     nPayload.userInfo = null;
                     nPayload.authentication = true;
+                    nPayload.isLogin = false
                 }else{
                     nPayload.res = response;
                     nPayload.isLogin=false
@@ -174,8 +199,8 @@ export default {
                     type:'save',
                     payload:nPayload
                 })
-                //yield put(routerRedux.push('/'));
-                return <Switch><Redirect to="/login"/></Switch>
+                yield put(routerRedux.push('/'));
+                //return <Switch><Redirect to="/"/></Switch>
                
             },
             *reset({payload},{call,put}){

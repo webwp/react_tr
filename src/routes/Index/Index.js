@@ -30,7 +30,8 @@ class Index extends Component {
                 <Search />
                 <Ad />
                 <IndexGrid />
-                <Message />
+                {/* 服务提醒需要登录才能访问 */}
+                {/* <Message /> */}
                 
                 <Shortcut />
                 {/* 资讯 */}

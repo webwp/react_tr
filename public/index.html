@@ -6,12 +6,27 @@
   <title>南宁智慧出行</title>
   <link rel="stylesheet" href="index.css" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://at.alicdn.com/t/font_594235_oh7fx8fyob7w4s4i.css" />
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_594235_4khhyy17i4e1m7vi.css" />
   <script>
+let _bool = false;
+    //alert(navigator.userAgent);
     //APP_CONF.platform
     window.APP_CONF = {
 			platform: 'h5'
-		};
+    };
+    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+    //alert(navigator.userAgent); 
+      //window.location.href ="iPhone.html";
+      console.log('ios');
+    } else if (/(Android)/i.test(navigator.userAgent)) {  //判断Android
+
+      console.log('Android');
+      //alert(navigator.userAgent); 
+      //window.location.href ="Android.html";
+    } else { //pc
+      console.log('pc');
+      //window.location.href ="pc.html";
+    };
   </script>
 </head>
 <body>

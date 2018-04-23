@@ -4,12 +4,32 @@ import { List, InputItem, WhiteSpace,Button,Flex,Checkbox,Toast,Tabs,Icon } from
 import { connect } from 'dva';
 
 import Page from '../../../components/Page/index';
+import Request from '../../../utils/request'
 
 const Item = List.Item;
 const Brief = Item.Brief;
 const AgreeItem = Checkbox.AgreeItem;
+let _bool = true;
 // const alert = Modal.alert;
+if(window.originalPostMessage){
+    //window.APP_CONF.platform = 'kk'
+    /*
+    * 1、APP请求的页面，首先发送数据给RN  
+    * 2、请求api ,判断是登录状态，通过api实现后台登录，返回对应的H5页面
+    */
+    _bool = false;
+    const JWT = localStorage.getItem('UTRAFF');
+    Request('http://api.traffic.nnpark.cn/client/profile/info',{nickname:'jj'})
+    if(JWT){
+        
+    }
+    
+}
 
+document.addEventListener('message', function (e) {
+    //document.getElementById('data').textContent = e.data;
+   // alert(e.data)
+  });
 
 @connect(state=>({
     user:state.user
@@ -22,6 +42,15 @@ class Index extends Component{
             disabled:false,
             nickname:null
         }
+    }
+    componentWillMount(){
+        if(navigator.userAgent.indexOf('Mobile')>=0){
+            throw SyntaxError();
+            //alert(1)
+            //throw SyntaxError();
+         }else{
+         
+         }
     }
     submit = ()=>{
         this.props.form.validateFields((error,value)=>{
@@ -111,7 +140,7 @@ class Index extends Component{
         const { getFieldProps , getFieldError } = this.props.form;
         const right = <div onClick={this.testHeadle.bind(this)}>保存</div>
         return(
-            <Page title='修改昵称' history={this.props.history} right={right} onSubmit = {this.testHeadle}>
+            <Page title='修改昵称' history={this.props.history} right={right} onSubmit = {this.testHeadle} _bool={_bool}>
                 <div className="custom">
                         
                     <List className='custom-form' style={{ margin: '5px 0', backgroundColor: 'white !important','width':'100%','border':'none' }}>
@@ -119,12 +148,13 @@ class Index extends Component{
                           <InputItem style={{'marginTop':'-1px'}}
                               {...getFieldProps('nickname',{rules:[{required:true,message:'不能为空'},{min:2,max:32,message:'2~32个字符'}]})}
                               clear
+                              error={(errors = getFieldError('nickname'))}
                               type="text"
                               placeholder="请输入昵称"
                               ref={el => this.Phone = el}
                           >修改昵称</InputItem>
                           
-                          
+                          {(errors = getFieldError('nickname'))}
                           <WhiteSpace />
                           {/* <Button type='primary' onClick={this.submit}>确定</Button> */}
                     </List>

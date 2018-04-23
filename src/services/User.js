@@ -15,7 +15,7 @@ export async function userLogin (params) {
 
 // 用户验证码登录
 export async function userLoginCode (params) {
-	return request(publicProInterface.requestURL+'/client/login/captcha', {
+	return request(publicProInterface.requestURL+'/client/auth/login/captcha', {
 		method: 'POST',
 		body: params
 	});
@@ -31,8 +31,8 @@ export async function userReg (params) {
 
 // 用户退出
 export async function userLogout (params) {
-	return request(publicProInterface.requestURL+`/api/logout`, {
-		method: 'GET',
+	return request(publicProInterface.requestURL+`/client/auth/logout`, {
+		method: 'POST',
 		body: params
 	});
 }
@@ -62,6 +62,14 @@ export async function updateUser (params) {
 //获取已登录用户信息
 export async function alreadyUser (params) {
 	return request(publicProInterface.requestURL+`/client/profile/info`,{
+		method:"GET",
+		body:params
+	})
+}
+
+//用户钱包
+export async function Waller (params) {
+	return request(publicProInterface.requestURL+`/client/payment/wallet`,{
 		method:"GET",
 		body:params
 	})

@@ -164,6 +164,7 @@ white-space: nowrap;
     -moz-border-radius:2px;
      -webkit-border-radius:2px;
 }
+.pad15 {padding:15px}
 
 .Shortcut .am-grid {
     margin: 10px -15px -15px -15px;
@@ -423,3 +424,19 @@ strong , h4 {font-weight: normal !important;}
     padding-top: 10px
 }
 .custom-user a {color:#fff}
+
+.custom-item { padding: 10px 15px;font-size: 18px !important}
+.custom-item .am-input-control input {
+    color:#f1f1f1;
+    border:1px solid #dfdfdf;
+    width: 100%;
+    text-indent: 4em;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    -webkit-border:5px;
+}
+.custom-item .custom-line { position: relative;}
+.custom-item .am-input-label { position: absolute; left:15px}
+
+.custom-item .am-input-control input,.custom-item .am-input-label {line-height: 32px;padding:5px 0;}

@@ -33,6 +33,24 @@ class Index extends Component{
     const obj = {canGoBack:false};
     window.postMessage(JSON.stringify(obj));
     const _this = this;
+    var userAgent = navigator.userAgent.toLowerCase();//获取UA信息
+console.log(userAgent);
+var http = require('http'); 
+var fs = require('fs'); 
+console.log("http:",http)
+// var server = http.createServer(function (req, res) { 
+//     if(req.url !== '/favicon.ico'){ 
+//         var out = fs.createWriteStream('./request.log'); 
+//         out.write('客户端请求所用的方法为：'+req.method+'\r\n'); 
+//         out.write('客户端请求所用的url字符串为：'+req.url+'\r\n'); 
+//         out.write('客户端请求头对象为：'+JSON.stringify(req.headers)+'\r\n'); 
+//         out.end('客户端请求所用的HTTP版本为：'+req.httpVersion); 
+//     } 
+//     res.end(); 
+// }).listen(3000,'localhost')
+// if(userAgent.indexOf("ezhouxing") != -1){//判断ua中是否含有和app端约定好的标识ezhouxing
+//         alert(包含);
+//     }
     document.addEventListener('message', function (e) {
       //document.getElementById('data').textContent = e.data;
       _this.setState({info:e.data})
