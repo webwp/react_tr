@@ -440,3 +440,57 @@ strong , h4 {font-weight: normal !important;}
 .custom-item .am-input-label { position: absolute; left:15px}
 
 .custom-item .am-input-control input,.custom-item .am-input-label {line-height: 32px;padding:5px 0;}
+
+.imgList {
+    height: 200px;
+    overflow: hidden;
+    border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px; 
+    -webkit-border-radius:10px;
+    position: relative; 
+    margin-bottom: 15px
+}
+.imgList-title {
+    border-radius:50px;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px; 
+    -webkit-border-radius:50px;
+    padding: 0 15px
+}
+.imgList .imgList-text {position: absolute; bottom: 0; width: 100%; line-height: 36px;background:transparent;background-color:rgba(0,0,0,0.45); color: #fff; text-indent: 1em}
+.imgList .imgList-title {position: absolute; top: 20px; right: 20px;  line-height: 28px;background:transparent;background-color:rgba(0,0,0,0.45); color: #fff}
+
+.list-map {background: #fff; margin-bottom: 60px}
+.list-map .list-items {
+    margin: 0 12.5px;
+    padding:12.5px 0;
+    overflow:hidden;
+    border-bottom: 1px solid #f1f1f1
+
+}
+.list-map .list-items:last-child{
+    border-bottom: none
+}
+
+.custom-list { padding-top:20px; background: #fff}
+.custom-list .am-list-line{ padding-right: 0; margin-right: 15px; padding-right: 0!important}
+.custom-list img { width: 100px!important; height: 80px!important}
+.content-list { margin-left: 120px;}
+.custom-list .content-list h5{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.custom-card .am-card-header-content,.custom-card .am-card-header-extra {font-size: 14px;}
+
+.custom-detail-map .am-list-item .am-list-line .am-list-arrow {
+    margin-left: 20px
+}
+
+.custom-detail-map .am-list-content  {
+     border-right: 1px solid #f1f1f1
+}
+.detail-title {margin: 0 15px; line-height: 42px; border-bottom:1px solid #f1f1f1}
+.custom-title-ls i { font-size: 16px !important}
