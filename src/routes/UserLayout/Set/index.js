@@ -10,7 +10,7 @@ const alert = Modal.alert;
 
 
 @connect(state=>({
-    user:state.user
+    user:state.setting
 }))
 class Index extends Component{
     handleuUserLogout = ()=>{
@@ -32,6 +32,12 @@ class Index extends Component{
 	}
     
     render(){
+        console.log(this.props)
+        const { user } = this.props
+        const { userInfo } = user
+        if(userInfo == null){
+            return false;
+        }
         return(
             <div>
                 <Header {...this.props} headerTxt="设置" />
@@ -40,7 +46,7 @@ class Index extends Component{
                     <Item arrow="horizontal" extra={<img src="../src/assets/user_1206721_easyicon.net.svg" className="spe am-icon am-icon-md" alt="" style={{height: '30px', width: "30px"}} />} multipleLine onClick={() => {}}>
                         头像 
                     </Item>
-                    <Item arrow="horizontal" extra="大王要我来巡山" multipleLine  onClick={() => { this.authNav('/user/nickname')}}>
+                    <Item arrow="horizontal" extra={userInfo.nickname} multipleLine  onClick={() => { this.authNav('/user/nickname')}}>
                         昵称
                     </Item>
                     <Item arrow="horizontal" extra="18007803076" multipleLine onClick={() => {}}>
@@ -50,7 +56,7 @@ class Index extends Component{
 
                 <WhiteSpace />
                 <List className="my-list">
-                    <Item arrow="horizontal" multipleLine onClick={()=>{this.authNav('/user/repass')}}>
+                    <Item arrow="horizontal" multipleLine onClick={()=>{this.authNav('/user/repassword')}}>
                         修改密码
                     </Item>
                 </List>

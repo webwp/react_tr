@@ -26,13 +26,10 @@ if(window.originalPostMessage){
     
 }
 
-document.addEventListener('message', function (e) {
-    //document.getElementById('data').textContent = e.data;
-   // alert(e.data)
-  });
+
 
 @connect(state=>({
-    user:state.user
+    user:state.setting
 }))
 class Index extends Component{
     constructor(props){
@@ -42,15 +39,6 @@ class Index extends Component{
             disabled:false,
             nickname:null
         }
-    }
-    componentWillMount(){
-        if(navigator.userAgent.indexOf('Mobile')>=0){
-            throw SyntaxError();
-            //alert(1)
-            //throw SyntaxError();
-         }else{
-         
-         }
     }
     submit = ()=>{
         this.props.form.validateFields((error,value)=>{
@@ -107,6 +95,17 @@ class Index extends Component{
                 phone:userInfo.nickname
             })
         }
+        let _this = this;
+
+        //监听及接收RN发送来的数据
+        document.addEventListener('message', function (e) {
+            switch(e.data){
+                case 'onSubmitForApp':
+                _this.onSubmitForApp();
+                break;
+                default:;
+            }
+        });
 
     }
     // 隐藏部分身份证号
@@ -132,15 +131,33 @@ class Index extends Component{
             }
         })
     }
+    onSubmitForApp = ()=>{
+        this.props.form.validateFields((error,value)=>{
+            if(!error){
+                value.actApp = "onSubmitApp";
+                window.postMessage(JSON.stringify(value))
+            }else{
+            }
+        })
+    }
     
     render(){
+        /*
+        * canGoBack 用与返回按钮
+        * act RN导航右边按钮调用H5的函数 onSubmitForApp 为H5函数
+        * rightTitle RN导航右边按钮的文字（图标）
+        */
+        const co = {canGoBack:true,act:'onSubmitForApp',rightTitle:'保存'};
         const {user} =this.props;
         const { userInfo } =user;
+        if(userInfo==null){
+            return false;
+        }
         let errors;
         const { getFieldProps , getFieldError } = this.props.form;
         const right = <div onClick={this.testHeadle.bind(this)}>保存</div>
         return(
-            <Page title='修改昵称' history={this.props.history} right={right} onSubmit = {this.testHeadle} _bool={_bool}>
+            <Page title='修改昵称' history={this.props.history} right={right} onSubmit = {this.testHeadle} _bool={_bool} someThing={co}>
                 <div className="custom">
                         
                     <List className='custom-form' style={{ margin: '5px 0', backgroundColor: 'white !important','width':'100%','border':'none' }}>
