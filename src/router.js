@@ -71,15 +71,18 @@ function RouterConfig({ history , app }) {
     },
     {
       path: '/user/set',  //用户信息设置
+      models: () => [require('./models/Setting').default],
       component: () => import('./routes/UserLayout/Set/'),
     },
     {
       path: '/user/nickname',  //用户昵称设置
+      models: () => [require('./models/Setting').default],
       component: () => import('./routes/UserLayout/Set/nickname'),
     },
     {
-      path: '/user/repass',  //用户信息设置
-      component: () => import('./routes/UserLayout/Set/repass'),
+      path: '/user/repassword',  //用户信息设置
+      models: () => [require('./models/Setting').default],
+      component: () => import('./routes/UserLayout/Set/repassword'),
     },
     {
       path: '/reg',
@@ -139,6 +142,21 @@ function RouterConfig({ history , app }) {
       path: '/water',
       //models: () => [import('./models/User')],
       component: () => import('./waterTour/'),
+    },
+    {
+      path: '/water/ticket',
+      //models: () => [import('./models/User')],
+      component: () => import('./waterTour/Ticket'),
+    },
+    {
+      path: '/water/ticket/:id',
+      //models: () => [import('./models/User')],
+      component: () => import('./waterTour/Ticket/detail'),
+    },
+    {
+      // path: '/water/charter',
+      // //models: () => [import('./models/User')],
+      // component: () => import('./waterTour/Charter'),
     }
   ];
   return (
