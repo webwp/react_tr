@@ -20,7 +20,7 @@ const Page = ({title, back, right, children, others, history,action , _bool,some
 		
 		//dd.biz.navigation.setTitle({title: title});
 	}
-
+    _bool = true;
 	return (
 		<div>
 			{_bool &&
