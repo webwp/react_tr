@@ -14,14 +14,6 @@ const locale = {
   list : state.index
 }))
 class Information extends Component{
-    componentWillMount(){
-      const { dispatch } = this.props;
-        //获取资讯内容
-        dispatch({
-            type:'index/news',
-            payload:{page:1,per_page:10}
-        })
-    }
     changPage = (e) => {
       const { dispatch } = this.props;
         //获取资讯内容
@@ -33,9 +25,15 @@ class Information extends Component{
     render(){
         const {list} = this.props;
         const {news} = list;
+        const someThing = {canGoBack:false,_bool:false}
+        
+        if(news == null){
+          return false;
+        }
+        console.log(news)
         return (
             
-              <Page title='资讯列表' history={this.props.history}>  
+              <Page title='资讯列表' history={this.props.history} someThing={someThing}>  
                 <div className="Shortcut contents">
                 <ul className="custom_list">
                 {news != null ?
@@ -50,7 +48,7 @@ class Information extends Component{
                       </Link>
                     </li>
                   
-                 )) : '暂无数据'
+                 )) : ''
                 }
                 </ul>
                 {news==null ?"" : (news.data.last_page==1 ? '':
