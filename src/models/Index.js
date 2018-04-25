@@ -20,11 +20,16 @@ export default {
                 dispatch({
                     type: 'getTab',
                 });
+                dispatch({
+                    type:'news',
+                    payload:{page:1,per_page:10}
+                });
             },
         },
     
         effects: {
             *news( { payload },{ call , put } ){
+                
                 const response = yield call(getNews,payload);
                 const nPayload = {};
                 if(response.code === 0){

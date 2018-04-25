@@ -12,7 +12,7 @@ class IndexGrid extends Component{
         };
         let dataTest = [
             {bg:'#FD6F57',icon:'icon-swticongongjiaoche1',txt:'公交',url:''},
-            {bg:'#2EA1F1',icon:'icon-youlun',txt:'邮轮码头',url:''},
+            {bg:'#2EA1F1',icon:'icon-youlun',txt:'邮轮码头',url:'#/water'},
             {bg:'#01D066',icon:'icon-tingche',txt:'停车',url:''},
             {bg:'#1CC7F2',icon:'icon-gongxiangtubiaozhuangtaileicaozuolei24',txt:'共享汽车',url:''},
             {bg:'#FFAC23',icon:'icon-mobilepower',txt:'充电桩',url:''},

@@ -22,7 +22,9 @@ export default {
         },
     
         subscriptions: {
+            
             setup({ dispatch, history }) {
+                const JWT = localStorage.getItem('UTRAFF');
                 const { location } = history;
                 if(location.pathname != '/' && location.pathname != '/user'){
                     dispatch({
@@ -33,11 +35,12 @@ export default {
                     dispatch({
                         type:'fetchConfig'
                     })
+                }
+                if(JWT){
                     dispatch({
                         type:'wallet'
                     })
                 }
-                
             },
         },
     
@@ -203,15 +206,7 @@ export default {
                 //return <Switch><Redirect to="/"/></Switch>
                
             },
-            *reset({payload},{call,put}){
-                const reset = yield call(reSetPassword,payload);
-                if(reset.code === 0){
-                    Toast.info(reset.msg,1);
-                    yield put(routerRedux.push('/user/set'))
-                }else{
-                    Toast.info('操作失败',1);
-                }
-            },
+            
             *updateUser( { payload },{ call , put }){
                 const response = yield call(updateUser,payload);
                 const nPayload = {};
