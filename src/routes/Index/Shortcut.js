@@ -1,5 +1,6 @@
 import React , { Component } from 'react';
 import { List,Carousel, WingBlank,Grid } from 'antd-mobile';
+import Config from '../../config';
 
 const data = [
     {title:'坐公交点我',txt:'扫码乘公交',img:'../../src/assets/off.jpg'},
@@ -21,7 +22,7 @@ class Shortcut extends Component{
                                 <strong style={{fontWeight:'normal'}}>{dataItem.title}</strong>
                                 <p className="font-text-12">{dataItem.txt}</p>
                             </div>
-                            <img src={dataItem.img} className="shortcut-icon" style={{ width: '48px', height: '48px',"float":'right' }} alt="" />
+                            <img src={dataItem.img}  className="shortcut-icon" style={{ width: '48px', height: '48px',"float":'right' }} alt="" onError={(el)=>Config.handleImageErrored(el)} />
                             
                         </div>
                 )}
