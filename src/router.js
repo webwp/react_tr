@@ -34,7 +34,7 @@ function RouterConfig({ history , app }) {
       component: () => import('./routes/UserLayout/Coupons/'),
     },
     {
-      path: '/user/bill/:id',  //账单
+      path: '/user/bill',  //账单
       models: () => [require('./models/Bill').default],
       component: () => import('./routes/UserLayout/Bill/'),
     },
@@ -73,6 +73,10 @@ function RouterConfig({ history , app }) {
       path: '/user/set',  //用户信息设置
       models: () => [require('./models/Setting').default],
       component: () => import('./routes/UserLayout/Set/'),
+    },
+    {
+      path: '/user/feelback',  //意见反馈
+      component: () => import('./routes/UserLayout/FeelBack/'),
     },
     {
       path: '/user/nickname',  //用户昵称设置
