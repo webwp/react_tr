@@ -190,7 +190,7 @@ export default {
                     Toast.hide();
                     localStorage.removeItem('UTRAFF', '');
                     localStorage.removeItem('UT', '');
-                    nPayload.res = response;
+                    nPayload.res = '';
                     nPayload.userInfo = null;
                     nPayload.authentication = true;
                     nPayload.isLogin = false
