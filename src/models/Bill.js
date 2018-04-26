@@ -15,7 +15,10 @@ export default {
     
         subscriptions: {
             setup({ dispatch, history }) {
-                
+                dispatch({
+                    type:'getList',
+                    payload:{page:0}
+                })
                  
             }
         },
