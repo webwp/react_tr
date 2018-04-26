@@ -68,7 +68,7 @@ class Index extends Component{
                 <div className="am-result">
                     <div className='custom-user'>
                         <Badge text={10} className='left'>
-                            <span className='left' onClick={this.authCheck('/message')} badge={1} ><i className="iconfont icon-xiaoxi"></i></span>
+                            <span className='left' onClick={()=>this.authCheck('/message')} badge={1} ><i className="iconfont icon-xiaoxi"></i></span>
                         </Badge>
                         <span className='right' onClick={()=>{this.authCheck('/user/set')}}><i className="iconfont icon-setup"></i></span>
                     </div>
