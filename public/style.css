@@ -139,7 +139,7 @@ a {color:#555555; display: block}
 .mt70 {margin-top: 70px;}
 .mt80 {margin-top: 80px;}
 
-.contents { background: #fff; padding: 8px 10px; overflow: hidden;}
+.contents { background: #fff; padding: 0 10px; overflow: hidden;}
 
 .padding-left-74 {padding-left: 74px;padding-right: 25px; }
 
@@ -150,7 +150,7 @@ text-overflow: ellipsis;
 white-space: nowrap;
 }
 
-.Shortcut .sub-title{position: relative; text-indent: 1em}
+.Shortcut .sub-title{position: relative; text-indent: 1em; padding: 10px 0}
 .icon-other {
     position: absolute;
     left: 0;
@@ -167,7 +167,8 @@ white-space: nowrap;
 .pad15 {padding:15px}
 
 .Shortcut .am-grid {
-    margin: 10px -15px -15px -15px;
+    margin: 0 -15px -15px -15px;
+    padding-bottom: 15px;
 }
 .Shortcut .am-grid-item {
     height:80px!important
@@ -228,7 +229,7 @@ white-space: nowrap;
 .custom_grid_other .am-grid-text {font-size: 14px!important;}
 strong , h4 {font-weight: normal !important;}
 .custom_wingblank { margin: 0 !important}
-.custom_list { border-top: 1px solid #f2f2f2; margin: 10px -10px}
+.custom_list { border-top: 1px solid #f2f2f2; margin: 0 -10px}
 .custom_list li {border-bottom: 1px solid #f1f1f1; padding: 10px; overflow: hidden;}
 .custom_list li:last-child {border-bottom: none}
 .custom_list li img {float: left;}
