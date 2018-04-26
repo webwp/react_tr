@@ -25,7 +25,7 @@ class IndexGrid extends Component {
                 onClick={_el => console.log(_el)} 
                 itemStyle={{height:'100px'}}
                 renderItem={dataItem => (
-                    <div style={{ padding: '12.5px' }}>
+                    <div>
                       <img src={dataItem.image} style={{ height: '60px' }} alt="" />
                     </div>
                   )}
