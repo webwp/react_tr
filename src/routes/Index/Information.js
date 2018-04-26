@@ -2,6 +2,8 @@ import React , { Component } from 'react';
 import { Link } from 'dva/router';
 import { List,Carousel, WingBlank,Grid } from 'antd-mobile';
 
+import Config from '../../config'
+
 
 
 class Information extends Component{
@@ -16,8 +18,8 @@ class Information extends Component{
                   resData.map((item,key)=>(
                     <li key={key}>
                       <Link  to={'information/detail/'+item.id}>
-                        <img src={item.image} width="64" height="64" />
-                        <div>
+                        <img src={item.image} width="64" height="64" onError={(el)=>Config.handleImageErrored(el)} />
+                        <div style={{marginLeft:"80px"}}>
                           <h4>{item.title}</h4>
                           <p>{item.publish_time}</p>
                         </div>
