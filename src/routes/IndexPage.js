@@ -42,7 +42,7 @@ class TabBarExample extends Component {
   }
 
   render() {
-    const { dispatch,page } = this.props;
+    const { dispatch,page , history} = this.props;
     return (
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { position: 'fixed', height: '100%', width: '100%', top: 0 }}>
         <TabBar
@@ -104,7 +104,7 @@ class TabBarExample extends Component {
           >
 
             {/* {this.props.page.selectedTab === 'yellowTab'?this.renderContent(<Redirect to='/user' />):''} */}
-            {this.props.page.selectedTab === 'yellowTab'?this.renderContent(<User />):''}
+            {this.props.page.selectedTab === 'yellowTab'?this.renderContent(<User {...this.props} />):''}
           </TabBar.Item>
         </TabBar>
       </div>
