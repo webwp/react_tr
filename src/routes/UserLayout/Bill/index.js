@@ -20,14 +20,6 @@ const data = [
     bill:state.bill
 }))
 class Index extends Component{
-    componentWillMount(){
-        const { match , dispatch } = this.props;
-        const { id }=match.params;
-        dispatch({
-            type:'bill/getList',
-            payload:{page:0}
-        })
-    }
     render(){
         const { bill } = this.props;
         const { data } = !bill.data ? bill : [];
