@@ -3,7 +3,10 @@ import { connect } from 'dva'
 import { Link } from 'dva/router';
 import { List,Carousel, WingBlank,Grid,Pagination } from 'antd-mobile';
 
+import Config from '../../config'
+
 import Page from "../../components/Page"
+
 
 const locale = {
   prevText: '上一页',
@@ -21,6 +24,9 @@ class Information extends Component{
             type:'index/news',
             payload:{page:e,per_page:10}
         })
+    }
+    handleImageLoaded() {
+      this.setState({ imageStatus: 'loaded' });
     }
     render(){
         const {list} = this.props;
@@ -40,8 +46,12 @@ class Information extends Component{
                   news.data.data.map((item,key)=>(
                     <li key={key}>
                       <Link to={'information/detail/'+item.id}>
-                        <img src={item.image} width="64" height="64" />
-                        <div>
+                        <img 
+                            src={item.image} width="64" height="64" 
+                            onLoad={this.handleImageLoaded.bind(this)}
+                            onError={(el) => Config.handleImageErrored(el)}
+                        />
+                        <div style={{marginLeft:'80px'}}>
                           <h4>{item.title}</h4>
                           <p>{item.publish_time}</p>
                         </div>
