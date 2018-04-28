@@ -63,7 +63,7 @@ class TabBarExample extends Component {
             }}
             data-seed="logId"
           >
-          {this.props.page.selectedTab == 'blueTab' ? this.renderContent(<Index />):''}
+          {this.renderContent(<Index />)}
           </TabBar.Item>
           <TabBar.Item
             title='扫码/支付'
