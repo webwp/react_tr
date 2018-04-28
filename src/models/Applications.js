@@ -25,7 +25,14 @@ export default {
 
             *getApplications({ payload },{ call , put }){
                 const response = yield call(getApplications,payload);
-                console.log("网络请求：",response); 
+                const nPayload = {};
+                if(response.code === 0){
+                    nPayload.application = response.data;
+                    yield put({
+                        type:'save',
+                        payload:{...nPayload}
+                    })
+                }
             },
             
         },
