@@ -226,7 +226,7 @@ white-space: nowrap;
 
 
 .custom .am-tabs {display:inline-block!important } 
-.custom .am-result { padding:25px 15px; overflow: hidden; background: #44cf3a url(image/user/me_bg.png) center center no-repeat; background-size: 100%}
+.custom .am-result { padding:25px 15px; overflow: hidden; background: #44cf3a url(image/user/me_bg.png) center center no-repeat; background-size: 100% 100%}
 .custom .am-result .am-result-pic { float: left;    width: 60px;
     height: 60px;margin:0 10px 0 10px}
 .custom .am-result-title {font-size: 16px!important; color:#fff!important}
