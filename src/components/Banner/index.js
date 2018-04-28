@@ -3,7 +3,7 @@ import { List,Carousel, WingBlank } from 'antd-mobile';
  
 class Index extends Component {
     state = {
-        data: ['1', '2', '3'],
+        data: ['01', '02', '03'],
         imgHeight: 180,
         slideIndex: 0,
     }
@@ -29,7 +29,7 @@ class Index extends Component {
                     {this.state.data.map(val => (
                         <a
                         key={val}
-                        href="http://www.alipay.com"
+                        href="#"
                         style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
                         >
                         <img
