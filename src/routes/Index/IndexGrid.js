@@ -30,7 +30,6 @@ class IndexGrid extends Component{
             data.push(res);
             num++;
         })
-        console.log('CHUXI:',this.props)
         return (
             <Grid className='custom_grid_other' data={data} hasLine={false}  onClick={_el => console.log(_el)} />
         )

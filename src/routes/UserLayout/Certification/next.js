@@ -21,7 +21,6 @@ class Index extends Component{
         
         const phone = this.props.user.userInfo.phone,
               { dispatch } = this.props;
-              console.log(phone)
         if( typeof phone != "undefined" || phone != null){
           
             dispatch({

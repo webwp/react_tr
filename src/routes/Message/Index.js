@@ -18,7 +18,6 @@ class Index extends Component{
         if(message == null){
             return false;
         }
-        console.log(message.data.data);
         return (
             <Page title="服务提醒" history={history} others={page}>
             <List className="my-list">

@@ -63,7 +63,7 @@ class TabBarExample extends Component {
             }}
             data-seed="logId"
           >
-            {this.renderContent(<Index />)}
+          {this.props.page.selectedTab == 'blueTab' ? this.renderContent(<Index />):''}
           </TabBar.Item>
           <TabBar.Item
             title='扫码/支付'
@@ -85,7 +85,7 @@ class TabBarExample extends Component {
             }}
             data-seed="logId1"
           >
-           {this.renderContent(<Ex />)}
+          {this.props.page.selectedTab == 'redTab'?this.renderContent(<Ex />):''}
           </TabBar.Item>
           <TabBar.Item
             icon={<i className="iconfont icon-wodexian fz-md"></i>}
@@ -100,8 +100,6 @@ class TabBarExample extends Component {
               })
             }}
           >
-
-            {/* {this.props.page.selectedTab === 'yellowTab'?this.renderContent(<Redirect to='/user' />):''} */}
             {this.props.page.selectedTab === 'yellowTab'?this.renderContent(<User {...this.props} />):''}
           </TabBar.Item>
         </TabBar>

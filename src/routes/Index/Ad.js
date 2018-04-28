@@ -34,7 +34,7 @@ class Ad extends Component{
                         style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
                         >
                         <img
-                            src={`image/${val}.jpg`}
+                            src={`image/${val}.jpeg`}
                             alt=""
                             style={{ width: '100%', verticalAlign: 'top' }}
                             onLoad={() => {

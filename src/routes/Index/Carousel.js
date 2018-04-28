@@ -7,9 +7,9 @@ class CarouselAd extends Component {
   }
   render() {
     const data = [
-      'http://img.zcool.cn/community/010a1b554c01d1000001bf72a68b37.jpg@1280w_1l_2o_100sh.png', 
-      'https://img3.duitang.com/uploads/item/201503/14/20150314212812_kCLmy.thumb.700_0.jpeg', 
-      'http://up.qqjia.com/z/17/tu17742_2.jpg'
+      'image/001.jpeg', 
+      'image/002.jpeg', 
+      'image/003.jpeg'
     ];
     return (
       <div style={{width:'100%',overflow:'hidden'}}>
@@ -22,7 +22,7 @@ class CarouselAd extends Component {
           autoplay
           infinite
           dots={false}
-          beforeChange={(from, to ) => console.log(`slide from ${from} to ${to} as `)}
+          // beforeChange={(from, to ) => console.log(`slide from ${from} to ${to} as `)}
           afterChange={index => this.setState({ slideIndex: index })}
         >
           {data.map((val, index) => (

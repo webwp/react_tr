@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import { connect } from 'dva'
 import { List,Carousel, WingBlank,Grid } from 'antd-mobile';
 import Config from '../../config';
 
@@ -8,9 +9,16 @@ const data = [
     {title:'预约停车',txt:'提前计划 不费时间',img:'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png'},
     {title:'停车交费',txt:'一键支付 节省时间',img:'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png'}
 ];
-
+// @connect(state=>({
+//     app:state.applications
+// }))
 class Shortcut extends Component{
     render(){
+        // const { application } = this.props.app;
+        // if(application == null){
+        //     return false;
+        // }
+        // console.log('shor:',application)
         return (
             <div className="mt10 contents Shortcut">
                 <div className="sub-title"><span className="icon-other"></span>交通出行</div>

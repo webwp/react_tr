@@ -98,7 +98,7 @@ class Index extends Component{
                     <Item
                         thumb="image/icon/authentication@2x.png"
                         arrow="horizontal"
-                        extra="李四"
+                        extra="未实名认证"
                         onClick={() => this.authCheck('/user/certification')}
                     >实名认证</Item>
                     <Item
