@@ -155,26 +155,26 @@ class Index extends Component{
         }
         let errors;
         const { getFieldProps , getFieldError } = this.props.form;
-        const right = <div onClick={this.testHeadle.bind(this)}>保存</div>
+        const right = <div onClick={this.testHeadle.bind(this)} className="txt-color-green-big">保存</div>
         return(
-            <Page title='修改昵称' history={this.props.history} right={right} onSubmit = {this.testHeadle} _bool={_bool} someThing={co}>
+            <Page title='修改昵称' history={this.props.history} right={right} others={{mode:'light'}} onSubmit = {this.testHeadle} _bool={_bool} someThing={co}>
                 <div className="custom">
                         
                     <List className='custom-form' style={{ margin: '5px 0', backgroundColor: 'white !important','width':'100%','border':'none' }}>
-                          <Item>当前昵称：{userInfo ? userInfo.nickname : '没有设置昵称'}</Item>
+                          {/* <Item>当前昵称：{userInfo ? userInfo.nickname : '没有设置昵称'}</Item> */}
                           <InputItem style={{'marginTop':'-1px'}}
-                              {...getFieldProps('nickname',{rules:[{required:true,message:'不能为空'},{min:2,max:32,message:'2~32个字符'}]})}
+                              {...getFieldProps('nickname',{initialValue:userInfo ? userInfo.nickname : '没有设置昵称',rules:[{required:true,message:'不能为空'},{min:2,max:32,message:'2~32个字符'}]})}
                               clear
                               error={(errors = getFieldError('nickname'))}
                               type="text"
                               placeholder="请输入昵称"
                               ref={el => this.Phone = el}
-                          >修改昵称</InputItem>
+                          ></InputItem>
                           
                           {(errors = getFieldError('nickname'))}
-                          <WhiteSpace />
                           {/* <Button type='primary' onClick={this.submit}>确定</Button> */}
                     </List>
+                    <p className="txt-c txt-color-assist-sm">昵称由2~10个字符的英文、汉字、数字或'-''_'组成</p>
                 </div>
             </Page>
         )

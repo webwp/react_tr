@@ -9,7 +9,6 @@ class Index extends Component{
     onSubmit =(value) => {
         this.props.form.validateFields((error, value) => {
             if(!error){
-                console.log(value)
                 Toast.info('提交成功',2)
             }else{
                 const { count } = error;

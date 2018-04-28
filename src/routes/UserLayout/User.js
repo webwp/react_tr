@@ -8,7 +8,6 @@ import User from '../../components/User';
 }))
 class Index extends Component{
     render(){
-        console.log("ssfsf",this.props)
         return(
            <User {...this.props} /> 
         )

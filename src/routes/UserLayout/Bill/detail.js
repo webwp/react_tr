@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import { List , WhiteSpace } from 'antd-mobile'
 
-import Header from '../../../components/Other/Header';
+import Page from '../../../components/Page';
 import ListView from '../../../components/Other/ListView'
 
 const Item = List.Item;
@@ -18,27 +18,29 @@ const data = {id:0,title:'停车缴费',business:'停车',money:'-10.00',payment
 
 class Index extends Component{
     render(){
+        const { history } = this.props;
+        const others = {mode:'light'};
         return(
-            <div>
-                <Header {...this.props} headerTxt="账单详情" />
-                <div className="custom-nav-sibling-top">
+            <Page title="账单详情" _bool={true} history={history} others={others}>
+                <div style={{ background:'white',height:'100%'}} >
                     <div className="txt-c custom-box">
-                        <strong>{data.title}</strong>
-                        <p className="fz-general-sm"><strong>{data.money}元</strong></p>
+                        <strong className="fz-mini-sm">{data.title}</strong>
+                        <p className="fz-important-dd mt10 txt-color-warn"><strong>{data.money}元</strong></p>
                     </div>
-                    <WhiteSpace />
+                    <WhiteSpace style={{background:'#f5f5f5'}} />
                     <List className="my-list">
                         <Item extra={data.title}>支付说明</Item>
                         <Item extra={data.payment}>支付方式</Item>
                     </List>
-                    <WhiteSpace />
-                    <List className="my-list">
+                    <WhiteSpace style={{background:'#f5f5f5'}} />
+                    <List className="my-list custom-my-list">
                         <Item extra={data.orderSer}>订单编号</Item>
                         <Item extra={data.recordTime}>交易时间</Item>
                         {data.trading?<Item extra={data.trading}>交易单号</Item>:''}
                     </List>
+                    <WhiteSpace style={{background:'#f5f5f5'}} />
                 </div>
-            </div>
+            </Page>
         )
     }
 }

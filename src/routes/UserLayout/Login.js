@@ -8,7 +8,7 @@ import { createForm } from 'rc-form';
 
 import LoginCode from '../../components/User/loginCode';
 import LoginPassword from '../../components/User/loginPassword';
-import Header from '../../components/Other/Header';
+import Page from '../../components/Page';
 
 
 const tabs = [
@@ -53,7 +53,7 @@ class Index extends Component {
     }
 
     render(){
-        const { app } = this.props;
+        const { app , history } = this.props;
         if(app.res){
            app.res.code==0 ? this.props.history.goBack():Toast.info(app.res.msg);
         }
@@ -61,28 +61,31 @@ class Index extends Component {
           
           return <Redirect to='/' />;
         }
-        
+        const others = {mode:'light'}
         return(
+          <Page title="用户登录" others={others} history={history} _bool={true}>
           <div className="loginBox custom">
-            <Header {...this.props} headerTxt='登录' />
-            <StickyContainer className='custom-pad-0-25 mt80' style={{height:'60%'}}>
+            <StickyContainer className='custom-pad-0-25 mt20' style={{height:'100%'}}>
                 <Tabs tabs={tabs}
                   initalPage={'t2'}
                   renderTabBar={renderTabBar}
+                  tabBarUnderlineColor='#39bc30'
+                  tabBarUnderlineStyle={{ borderColor:'#39bc30'}}
+                  tabBarActiveTextColor='#39bc30' 
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',padding:'15px 0', backgroundColor: '#fff' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',padding:'15px 0', backgroundColor: '#fff',marginTop:'30px' }}>
                       <LoginCode {...this.props} onSubmit={this.submit.bind(this)} />
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',padding:'15px 0', backgroundColor: '#fff' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center',padding:'15px 0', backgroundColor: '#fff',marginTop:'30px' }}>
                       <LoginPassword {...this.props} onSubmit={this.submit.bind(this)}/>
                   </div>
                   
                 </Tabs>
                 
             </StickyContainer>
-
+            </div>
                 
-          </div>
+          </Page>
         );
     }
 }

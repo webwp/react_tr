@@ -20,10 +20,16 @@ export async function getDetail (params) {
 	});
 }
 
-//获取消息提醒
-
+//获取服务提醒
 export async function getMessage (params) {
 	return request(publicProInterface.requestURL+'/client/message/remind', {
+		method: 'get',
+		body: params
+	});
+}
+//获取所有app应用
+export async function getApplications (params) {
+	return request(publicProInterface.requestURL+'/client/applications', {
 		method: 'get',
 		body: params
 	});

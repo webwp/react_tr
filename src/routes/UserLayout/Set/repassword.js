@@ -3,7 +3,7 @@ import { createForm } from 'rc-form';
 import { List, InputItem, WhiteSpace,Button,Flex,Checkbox,Toast,Tabs } from 'antd-mobile';
 import { connect } from 'dva';
 
-import Header from '../../../components/Other/Header';
+import Page from '../../../components/Page';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -21,13 +21,20 @@ class Index extends Component{
             codeText:'获取验证码',
             disabled:false,
             phone:null,
-            repassword:'',
-            hasError:false
+            repassword:"",
+            hasError:false,
+            showPass:false,
+            inputType:false,
+            showError:true,
         }
     }
     submit = ()=>{
         this.props.form.validateFields((error,value)=>{
-            value.phone = this.state.phone
+            value.phone = this.state.phone;
+            value.password != value.repassword ?
+                this.setState({hasError:!this.state.hasError,showError:!this.state.showError})
+                :
+                this.setState({hasError:!this.state.hasError,showError:!this.state.showError});
             if(!error){
                 const { dispatch } = this.props;
                 dispatch({
@@ -45,10 +52,11 @@ class Index extends Component{
         
         const phone = this.props.user.userInfo.phone,
               { dispatch } = this.props;
+              console.log(phone)
         if( typeof phone != "undefined" || phone != null){
           
             dispatch({
-                type:'repassword/code',
+                type:'setting/code',
                 payload:{phone:phone,type:2}
             })
             Toast.loading();
@@ -56,7 +64,7 @@ class Index extends Component{
             let index = setInterval(function(){
                 Toast.hide();
                 _this.setState({
-                    codeText:times<10 ? '0'+times+'秒后可获取':times+'秒后可获取',
+                    codeText:times<10 ? '0'+times+'秒后重试':times+'秒后重试',
                     disabled:true
                 })
                 times--;
@@ -93,22 +101,25 @@ class Index extends Component{
             repassword:value,
         });
    }
+   onShowPass = ()=>{
+       this.setState({showPass:!this.state.showPass,passType:!this.state.passType})
+   }
     render(){
-        const { user } = this.props;
+        const { user, history } = this.props;
         const { userInfo } = user;
+        const passType = this.state.passType ? 'text':'password';
         if(userInfo==null){
             return false;
         }
         let errors;
         const { getFieldProps , getFieldError } = this.props.form;
         return(
-            <div>
-                <Header {...this.props} headerTxt="修改密码" />
-                <div className="custom-nav-sibling-top custom">
+            <Page title="修改密码" others={{mode:'light'}} _bool={true} history={history}>
+                <div className="custom">
                         
-                    <List className='custom-form' style={{ margin: '5px 0', backgroundColor: 'white !important','width':'100%','border':'none' }}>
-                          <List.Item>
-                              手机号    {this.plusXing(userInfo.phone,3,4)}
+                    <List className='custom-form custom-form-input' style={{ margin: '5px 0', backgroundColor: 'white !important','width':'100%','border':'none' }}>
+                          <List.Item className="repassword-phone">
+                              手机号码   {this.plusXing(userInfo.phone,3,4)}
                           </List.Item>
                           <input type="hidden" {...getFieldProps('phone')} value={this.state.phone=userInfo.phone}/>
                           <InputItem
@@ -120,33 +131,40 @@ class Index extends Component{
                               type='text'
                               ref={el => this.customFocusInst = el}
                               style={{width:'70%'}}
-                          >验证码<Button disabled={this.state.disabled} type='primary' className="getCode" onClick={this.getCode} size='small'>{this.state.codeText}</Button></InputItem>
+                              extra={<span disabled={this.state.disabled} style={{color:this.state.disabled ? "#ccc":"#39bc30"}}  onClick={this.getCode}>{this.state.codeText}</span>}
+                          >
+                          {/* <Button disabled={this.state.disabled} type='primary' className="getCode" onClick={this.getCode} size='small'>{this.state.codeText}</Button> */}
+                          </InputItem>
           
-                          {(errors = getFieldError('sms_captcha')) ? errors.join(',') : null}
+                          {/* {(errors = getFieldError('sms_captcha')) ? errors.join(',') : null} */}
                           <InputItem style={{'marginTop':'-1px'}}
-                              {...getFieldProps('password',{rules:[{required:true,msg:'密码不能为空'},]})} //{pattern:/^[A-Za-z0-9]w(5,17)$/,msg:'数字与字母组合，至少6位'}
+                              {...getFieldProps('password',{rules:[{required:true,msg:'密码不能为空'},{pattern:/^[A-Za-z0-9]{6,12}$/,msg:"请输入6~12个字符，数字加字母"}]})} //{pattern:/^[A-Za-z0-9]w(5,17)$/,msg:'数字与字母组合，至少6位'}
                               clear
-                              type="password"
-                              placeholder="设置密码"
+                              type={passType}
+                              placeholder="设置密码(6~12个字符，数字加字母)"
                               ref={'password'}
                               error={(errors = getFieldError('password'))}
-                          >设置密码</InputItem>
+                              extra={<i onClick={this.onShowPass} style={{background:`url(${this.state.showPass?'image/login/Close.png':'image/login/display.png'}) center center no-repeat`,width:'32px',height:'22px',display:'inline-block'}}></i>}
+                          ></InputItem>
                           <InputItem style={{'marginTop':'-1px'}}
                               {...getFieldProps('repassword')}
                               clear
-                              type="password"
+                              type={passType}
                               placeholder="确认密码"
                               error={(errors = this.state.hasError)}
                               ref='repassword'
-                              onChange = {this.onHandleChangeRepassword}
-                              value={this.state.repassword}
-                          >确认密码</InputItem>
-                          
+                            //   onChange = {this.onHandleChangeRepassword}
+                            //   value={this.state.repassword}
+                          ></InputItem>
                           <WhiteSpace />
-                          <Button type='primary' onClick={this.submit}>确定</Button>
+                          <div style={{lineHeight:'36px',color:'red',height:'36px'}} className="txt-c">{this.state.showError?"":<span className=''>两次输入的密码不一致，请确认</span>}</div>
+                          <WhiteSpace />
+                          <div style={{padding:'25px 15px 0 15px'}}>
+                                <Button type='primary' className='am-button-green' onClick={this.submit}>确定</Button>
+                          </div>
                     </List>
                 </div>
-            </div>
+            </Page>
         )
     }
 }

@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import { List , Button, WhiteSpace, WingBlank ,Modal} from 'antd-mobile';
 import { connect } from 'dva';
 import { Link,Redirect } from 'dva/router';
-import Header from '../../../components/Other/Header';
+import Page from '../../../components/Page';
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -32,18 +32,18 @@ class Index extends Component{
 	}
     
     render(){
-        console.log(this.props)
-        const { user } = this.props
+        const { user,history } = this.props
         const { userInfo } = user
         if(userInfo == null){
             return false;
         }
+        //Page 设置
+        const page = {canGoBack:true,mode:'light'}
         return(
-            <div>
-                <Header {...this.props} headerTxt="设置" />
-                <div className="custom-nav-sibling-top">
-                <List className="my-list">
-                    <Item arrow="horizontal" extra={<img src="../src/assets/user_1206721_easyicon.net.svg" className="spe am-icon am-icon-md" alt="" style={{height: '30px', width: "30px"}} />} multipleLine onClick={() => {}}>
+            <Page title="设置" others={page} history={history}>
+                <WhiteSpace />
+                <List className="my-list set-list-img">
+                    <Item extra={<i className="iconfont icon-iconfontzhizuobiaozhun023104 fz-general-sm" alt="" />} multipleLine onClick={() => {}}>
                         头像 
                     </Item>
                     <Item arrow="horizontal" extra={userInfo.nickname} multipleLine  onClick={() => { this.authNav('/user/nickname')}}>
@@ -64,9 +64,10 @@ class Index extends Component{
                 <WhiteSpace />
                 <WingBlank>
                     <Button 
+                        type='warning'
                         onClick={() =>
                             alert('操作', '退出当前用户', [
-                            { text: '取消' },
+                            { text: '取消', onPress:()=>{}},
                             { text: '确定', onPress: this.handleuUserLogout },
                             ])
                         }
@@ -74,8 +75,7 @@ class Index extends Component{
                         退出登录
                     </Button>
                 </WingBlank>
-                </div>
-            </div>
+            </Page>
         )
     }
 }

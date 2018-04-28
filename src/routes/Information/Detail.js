@@ -19,9 +19,10 @@ class Index extends Component{
         const { detail , history } = this.props;
         const { details } = detail;
         const data = details != null ? details.data : {};
-        const j = {canGoBack:true}
+        const page = {canGoBack:true}
+        const others = {mode:'light'}
         return (
-            <Page title="资讯详情" history={this.props.history} someThing={j} >
+            <Page title="资讯详情" history={this.props.history} someThing={page} others={others} _bool={true} borderBottom={true}>
                 <Detail data={data} />
             </Page>
         )

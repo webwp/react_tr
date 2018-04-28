@@ -25,7 +25,6 @@ class Index extends Component{
     render(){
         const { history , Guide } = this.props;
         const { dataList } = Guide;
-        console.log(Guide)
         return(
           <Page title="出行指南" history={history}>
                 

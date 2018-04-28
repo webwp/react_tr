@@ -13,21 +13,31 @@ class Index extends Component{
             type:'user/wallet',
         })
     }
+    //页面跳转
+    pageJump = (url)=>{
+        const { history } = this.props;
+        history.push(url);
+    }
     render(){
         const { history , Wallet } = this.props;
+        const others = {mode:'light'};
         const { wallet } = Wallet;
         if(wallet == null) {
             return false;
         }
-        console.log('-----',Wallet)
         return(
-           <Page title="我的二维码" history={history} >
+           <Page title="我的二维码" history={history} others={others} _bool={true} >
                 <div style={{textAlign:'center',marginTop:'50px'}}>
-                    <h3>余额</h3>
+                    <h4 className="fz-small-md">账户余额</h4>
                     <WhiteSpace />
-                    {!wallet.data.balance ? '0.00' : wallet.data.balance}
+                    <div className="txt-color-3 fz-weak-sm">
+                    ￥<span className="fz-important-sp">{!wallet.data.balance ? '0.00' : wallet.data.balance}</span>
+                    </div>
                     <WhiteSpace />
-                       <Button type="primary">充值</Button><WhiteSpace />
+                    <WhiteSpace />
+                    <div style={{padding:'25px 15px 0 15px'}}>
+                        <Button type='primary' className='am-button-green' onClick={()=>this.pageJump('/user/wallet/recharge')}>充值</Button>
+                    </div>
                 </div>
            </Page>
         )

@@ -67,7 +67,6 @@ class Index extends Component{
                     value.birthday = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
                     value.type = parseInt(value.type)
                     value.gender = String(value.gender)
-                    console.log(value)
                     const { dispatch } = this.props;
                     dispatch({
                         type:'contactInfo/adds',

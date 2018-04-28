@@ -13,7 +13,7 @@ class Shortcut extends Component{
     render(){
         return (
             <div className="mt10 contents Shortcut">
-                <div className="sub-title"><span className="icon-other"></span>快捷方式</div>
+                <div className="sub-title"><span className="icon-other"></span>交通出行</div>
                 <Grid data={data}
                     columnNum={2}
                     renderItem={dataItem => (

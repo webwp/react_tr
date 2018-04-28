@@ -7,6 +7,7 @@ import Message from './Message';
 import Ad from './Ad';
 import Shortcut from './Shortcut'
 import Information from './Information'
+import Carousel from './Carousel'
 
 //var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset;
 @connect((state)=>({
@@ -31,7 +32,9 @@ class Index extends Component {
                 <Ad />
                 <IndexGrid />
                 {/* 服务提醒需要登录才能访问 */}
-                {/* <Message /> */}
+                <Message {...this.props}/>
+
+                <Carousel />
                 
                 <Shortcut />
                 {/* 资讯 */}

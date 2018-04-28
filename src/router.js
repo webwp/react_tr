@@ -19,8 +19,13 @@ function RouterConfig({ history , app }) {
     {
       path: '/',
       //models: () => [require('./models/IndexPage').default],
-      models: () => [import('./models/IndexPage'),import('./models/Index')],
+      models: () => [import('./models/IndexPage'),import('./models/Index'),import('./models/Message'),import('./models/Applications')],
       component: () => import('./routes/IndexPage'),
+    },
+    {
+      path: '/moreapp',
+      models: () => [require('./models/Applications').default],
+      component: () => import('./routes/MoreApp'),
     },
     {
       path: '/user',
@@ -62,12 +67,24 @@ function RouterConfig({ history , app }) {
       component: () => import('./routes/UserLayout/About/'),
     },
     {
+      path: '/user/certification',  //用户认证
+      component: () => import('./routes/UserLayout/Certification/'),
+    },
+    {
+      path: '/user/next',  //用户认证
+      component: () => import('./routes/UserLayout/Certification/next'),
+    },
+    {
       path: '/user/mycode',  //我的二维码
       component: () => import('./routes/UserLayout/MyCode/'),
     },
     {
       path: '/user/wallet',  //钱包
       component: () => import('./routes/UserLayout/Wallet/'),
+    },
+    {
+      path: '/user/wallet/recharge',  //充值
+      component: () => import('./routes/UserLayout/Wallet/recharge'),
     },
     {
       path: '/user/set',  //用户信息设置
@@ -99,6 +116,11 @@ function RouterConfig({ history , app }) {
       component: () => import('./routes/UserLayout/Login'),
     },
     {
+      path: '/agreement',     //用户协议
+      //models: () => [import('./models/User')],
+      component: () => import('./routes/Agreement'),
+    },
+    {
       path: '/test',
       //models: () => [import('./models/User')],
       component: () => import('./routes/Test/Index'),
@@ -125,7 +147,7 @@ function RouterConfig({ history , app }) {
     },
     {
       path: '/message',
-      models: () => [import('./models/Index')],
+      models: () => [import('./models/Message')],
       component: () => import('./routes/Message/Index'),
     },
     {

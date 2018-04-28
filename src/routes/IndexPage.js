@@ -33,10 +33,8 @@ class TabBarExample extends Component {
 
   renderContent(pageText) {
     return (
-      <div style={{ backgroundColor: 'white', height: '100%' }}>
-        <div>
+      <div style={{ height: '100%' }}>
             {pageText}
-        </div>
       </div>
     );
   }
@@ -47,15 +45,15 @@ class TabBarExample extends Component {
       <div style={this.state.fullScreen ? { position: 'fixed', height: '100%', width: '100%', top: 0 } : { position: 'fixed', height: '100%', width: '100%', top: 0 }}>
         <TabBar
           unselectedTintColor="#949494"
-          tintColor="#33A3F4"
+          tintColor="#00b839"
           barTintColor="white"
           hidden={this.state.hidden}
         >
           <TabBar.Item
             title="首页"
             key="Life"
-            icon={<i className="iconfont icon-shouye1 fz-md"></i>}
-            selectedIcon={<i className="iconfont icon-shouye1 fz-md"></i>}
+            icon={<i className="iconfont icon-shouye2 fz-md"></i>}
+            selectedIcon={<i className="iconfont icon-shouye2 fz-md"></i>}
             selected={this.props.page.selectedTab === 'blueTab'}
             onPress={() => {
               dispatch({
@@ -90,8 +88,8 @@ class TabBarExample extends Component {
            {this.renderContent(<Ex />)}
           </TabBar.Item>
           <TabBar.Item
-            icon={<i className="iconfont icon-account fz-md"></i>}
-            selectedIcon={<i className="iconfont icon-account fz-md"></i>}
+            icon={<i className="iconfont icon-wodexian fz-md"></i>}
+            selectedIcon={<i className="iconfont icon-wodexian fz-md"></i>}
             title="会员中心"
             key="my"
             selected={this.props.page.selectedTab === 'yellowTab'}

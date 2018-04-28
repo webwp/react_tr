@@ -12,9 +12,9 @@ class Index extends Component{
         const { history } = this.props;
         const other = {mode:'light'};
         const right = <i className="iconfont icon-xiaoxi"></i>;
-
+        const someThing = {canGoBack:false}
         return(
-            <Page title={'水上码头'} right={right} others={other} history={history}>
+            <Page title='水上码头' right={right} others={other} someThing={someThing} history={history}>
                 <Ad />
                 <IndexGrid />
                 <WhiteSpace />

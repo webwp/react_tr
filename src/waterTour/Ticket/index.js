@@ -25,8 +25,9 @@ class Index extends Component{
                 "phone": "1234567890"
             }
         ];
+        const someThing = {canGoBack:true}
         return(
-          <Page title="始发码头" history={history}>
+          <Page title="始发码头" history={history} someThing={someThing}>
               <h4>请选择始发码头</h4>
               {data.map((item,index)=>(
                 <Link to={'/water/ticket/'+item.id} style={{padding:'12px'}} key={index}>

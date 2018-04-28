@@ -34,10 +34,8 @@ class Index extends Component{
     window.postMessage(JSON.stringify(obj));
     const _this = this;
     var userAgent = navigator.userAgent.toLowerCase();//获取UA信息
-console.log(userAgent);
 var http = require('http'); 
 var fs = require('fs'); 
-console.log("http:",http)
 // var server = http.createServer(function (req, res) { 
 //     if(req.url !== '/favicon.ico'){ 
 //         var out = fs.createWriteStream('./request.log'); 

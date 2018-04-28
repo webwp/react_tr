@@ -21,8 +21,9 @@ function renderTabBar(props) {
 class Detail extends Component {
     render(){
         const { history } = this.props;
+        const someThing = {canGoBack:true}
         return(
-            <Page title='预订船票' history={history} >
+            <Page title='预订船票' history={history} someThing={someThing}>
                  <Banner />
                  <List className="custom-detail-map">
                  <h3 className="detail-title">民生码头</h3>

@@ -4,7 +4,7 @@ import { List,Carousel, WingBlank } from 'antd-mobile';
 class Ad extends Component{
     state = {
         data: ['1', '2', '3'],
-        imgHeight: 180,
+        imgHeight: 150,
         slideIndex: 0,
     }
     componentDidMount() {
@@ -23,6 +23,7 @@ class Ad extends Component{
                     autoplay={true}
                     infinite
                     selectedIndex={1}
+                    dotActiveStyle={{backgroundColor:'rgba(0, 204, 99, 0.77)'}}
                     //beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
                     //afterChange={index => console.log('slide to', index)}
                     >

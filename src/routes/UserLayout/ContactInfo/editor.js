@@ -85,7 +85,6 @@ class Index extends Component{
     };
     onSubmit = ()=>{
             this.props.form.validateFields((error,value)=>{
-                console.log(value)
                 value.type =value.type ? parseInt((value.type)[0]) : null;
                 value.gender =value.gender ? ((value.gender)[0]) : null;
                 const { dispatch,match } = this.props;

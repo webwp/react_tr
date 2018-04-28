@@ -1,7 +1,10 @@
 import React,{Component} from 'react';
+import { connect } from 'dva';
 import { routerRedux,Redirect,Switch } from 'dva/router';
 import { Grid } from 'antd-mobile';
-
+@connect(state=>({
+    app:state.applications
+}))
 class IndexGrid extends Component{
     render(){
         let num=0;
@@ -18,7 +21,7 @@ class IndexGrid extends Component{
             {bg:'#FFAC23',icon:'icon-mobilepower',txt:'充电桩',url:''},
             {bg:'#01D066',icon:'icon-yuyue',txt:'预约车险',url:''},
             {bg:'#FF8D3A',icon:'icon-ditu',txt:'出行指南',url:'#/guide'},
-            {bg:'#FF8D3A',icon:'icon-manage_fill',txt:'更多',url:''},
+            {bg:'#FF8D3A',icon:'icon-manage_fill',txt:'更多',url:'#/moreapp'},
         ]
         let data = [];
         dataTest.map((item,index)=>{
@@ -27,6 +30,7 @@ class IndexGrid extends Component{
             data.push(res);
             num++;
         })
+        console.log('CHUXI:',this.props)
         return (
             <Grid className='custom_grid_other' data={data} hasLine={false}  onClick={_el => console.log(_el)} />
         )

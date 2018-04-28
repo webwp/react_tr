@@ -61,8 +61,9 @@ class Index extends Component{
               });
             }}
             data-seed="logId1"
+            noRenderContent={false}
           >
-            {this.renderContent(<Found  {...this.props}/>)}
+          {this.state.selectedTab == 'redTab' ? this.renderContent(<Found  {...this.props}/>):''}
           </TabBar.Item>
           <TabBar.Item
             icon={<i className="iconfont icon-dingdan"></i>}
@@ -76,8 +77,9 @@ class Index extends Component{
                 selectedTab: 'greenTab',
               });
             }}
+            noRenderContent={false}
           >
-            {this.renderContent(<Other  {...this.props}/>)}
+          {this.state.selectedTab == 'greenTab' ? this.renderContent(<Other  {...this.props}/>):''}
           </TabBar.Item>
           <TabBar.Item
             icon={<i className="iconfont icon-kefu"></i>}
@@ -90,8 +92,9 @@ class Index extends Component{
                 selectedTab: 'yellowTab',
               });
             }}
+            noRenderContent={false}
           >
-            {this.renderContent('My')}
+            {this.state.selectedTab == 'yellowTab' ? this.renderContent('My'):''}
           </TabBar.Item>
         </TabBar>
       </div>

@@ -6,22 +6,21 @@ const Item = List.Item;
 const Brief = Item.Brief;
 
 @connect(state => ({
-    Message:state.index
+    Message:state.message
 }))
 class Messages extends Component{
-    componentWillMount(){
-        const {dispatch}=this.props
-        dispatch({
-            type:'index/messages',
-            payload:{page:1,per_page:2}
-        })
-    }
+    
     render(){
         const { Message } = this.props;
+        
+        const {message} = Message;
+        if(message == null){
+            return false;
+        }
         return (
-            <div className="mt10 contents">
+            <div className="mt10 contents" style={{paddingTop:'10px'}}>
                  <div className="left">
-                     <img src='https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png' style={{'width':'48px','height':'48px'}} />
+                     <img src='image/home/msg.png' />
                  </div>
                  <div className="right" style={{"lineHeight":"55px",'color':'#666'}}>
                      <a href="#/message"><i className="iconfont icon-gengduo fz-sm"></i></a>
@@ -33,7 +32,7 @@ class Messages extends Component{
                               <li>{item.message}</li>
                           ))
                           :
-                          ''
+                          <li>您当前没有提醒信息</li>
                      }
                      </ul>
                  </div>

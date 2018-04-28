@@ -12,7 +12,6 @@ export default {
         state: {
             news:null,   //资讯
             details:null,
-            message:null,
         },
     
         subscriptions: {
@@ -38,17 +37,6 @@ export default {
                 yield put({
                     type:'save',
                     payload:nPayload
-                })
-            },
-            *messages({ payload },{ call,put }){
-                const response = yield call(getMessage,payload);
-                const nPayload = {};
-                if(response.code === 0){
-                     nPayload.message = response;
-                }
-                yield put({
-                    type:'save',
-                    payload:{...nPayload}
                 })
             },
             *detail( { payload },{ call,put } ){

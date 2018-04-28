@@ -193,7 +193,6 @@ class Index extends Component {
     if (this.state.isLoading && !this.state.hasMore) {
       return;
     }
-    console.log('reach end', event);
     this.setState({ isLoading: true });
     setTimeout(() => {
       genData(++pageIndex);
@@ -243,7 +242,6 @@ class Index extends Component {
         </div>
       );
     };
-    console.log("ss:",this.state.dataSource)
     return (
             <ListView
                 className="custom-nav-sibling-top"

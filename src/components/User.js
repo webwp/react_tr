@@ -43,13 +43,13 @@ class Index extends Component{
         const { wallet } = user;
         const data = [
             {
-                icon:'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
+                icon:'image/icon/qrcode.png',
                 text:'我的二维码',
                 url:'/user/mycode',
                 other:''
             },
             {
-                icon:'https://gw.alipayobjects.com/zos/rmsportal/WXoqXTHrSnRcUwEaQgXJ.png',
+                icon:'image/icon/Coupon.png',
                 text:'红包/卡券',
                 url:'/user/coupons',
                 other:''
@@ -62,73 +62,82 @@ class Index extends Component{
             }
         ]
         return(
-            <div className="result-example custom">
-                
-                     
+            <div className="result-example custom custom-bg">
                 <div className="am-result">
                     <div className='custom-user'>
-                        <Badge text={10} className='left'>
-                            <span className='left' onClick={()=>this.authCheck('/message')} badge={1} ><i className="iconfont icon-xiaoxi"></i></span>
+                        <Badge text={1} className='left'>
+                            <i  onClick={()=>this.authCheck('/message')} className="iconfont icon-xiaoxi fz-general-md"></i>
                         </Badge>
                         <span className='right' onClick={()=>{this.authCheck('/user/set')}}><i className="iconfont icon-setup"></i></span>
                     </div>
                     <div className="am-result-pic">
-                        <img src="../src/assets/user_1206721_easyicon.net.svg" className="spe am-icon am-icon-md" alt="" style={{height: '60px', width: "60px"}} />
+                        <i className="icon-iconfontzhizuobiaozhun023104 iconfont" style={{color:'#fff'}}></i>
                     </div>
                     <div className="am-result-title">{user.userInfo!=null?user.userInfo.phone:"游客"}</div>
-                    <div className="am-result-message">{user.userInfo!=null?<Button type="" inline size="small">实名认证</Button>:<Link to='/login'>登录/注册</Link>}</div>
+                    <div className="am-result-message">{user.userInfo!=null?<Link to='/' inline size="small">未实名认证</Link>:<Link to='/login'>登录/注册</Link>}</div>
                 </div>
 
                 <Grid
                     data={data}
+                    square={false}
                     columnNum='3'
                     hasLine={false}
                     onClick={_el => this.authCheck(_el.url)}
                     renderItem={dataItem => (
                         <div style={{ padding: '12.5px' }} >
                          
-                          { dataItem.other!=''?<strong style={{ width:'100%',height:'48px','display':'inline-block','lineHeight':'48px','color':'red'}}>{dataItem.other}</strong>:<img src={dataItem.icon} style={{ width: '48px', height: '48px' }} alt="" />}
+                          { dataItem.other!=''?<strong style={{ width:'100%',height:'30px','display':'inline-block','lineHeight':'30px','color':'red'}}>{dataItem.other}</strong>:<img src={dataItem.icon} alt="" />}
                           <div style={{ color: '#888', fontSize: '14px', marginTop: '12px' }}>
                             <span>{dataItem.text}</span>
                           </div>
                         </div>
                       )}
                 />
-                <List renderHeader={() => '用户信息'}>
+                <WhiteSpace />
+                <List>
                     <Item
-                        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                        thumb="image/icon/authentication@2x.png"
                         arrow="horizontal"
                         extra="李四"
-                        onClick={() => this.authCheck('')}
+                        onClick={() => this.authCheck('/user/certification')}
                     >实名认证</Item>
                     <Item
-                        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                        thumb="image/icon/bill@2x.png"
                         arrow="horizontal"
                         onClick={() => this.authCheck('/user/bill') }
                     >账单</Item>
                     <Item
-                        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                        thumb="image/icon/Touristinformation@2x.png"
                         arrow="horizontal"
                         onClick={() => this.authCheck('/user/contactinfo/') }
                     >常用游客信息</Item>
                     <Item
-                        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                        thumb="image/icon/bankcard@2x.png"
                         arrow="horizontal"
                         onClick={() => this.authCheck('')}
                     >银行卡</Item>
+                </List>
+                <WhiteSpace />
+                <List>
+                    
                     <Item
-                        thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png"
+                        thumb="image/icon/opinion@2x.png"
                         arrow="horizontal"
                         onClick={() => this.authCheck('/user/feelback')}
                     >意见反馈</Item>
                     <Item
-                        thumb="https://zos.alipayobjects.com/rmsportal/UmbJMbWOejVOpxe.png"
+                        thumb="image/icon/aboutus@2x.png"
                         arrow="horizontal"
                     >
                     <a href="#/user/about">关于我们</a>
                     </Item>
                     
                 </List>
+
+
+                <WhiteSpace />
+                <WhiteSpace />
+                
             </div>
         )
     }

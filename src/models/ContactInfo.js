@@ -54,7 +54,6 @@ export default {
             },
             *del({ payload },{ call,put ,dispatch }){
                 const response = yield call(onDel,payload);
-                console.log(response)
                 if(response.code === 0){
                     Toast.info('删除成功',2);
                     yield put({type:'getList'})

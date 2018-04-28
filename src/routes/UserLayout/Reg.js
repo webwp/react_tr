@@ -128,12 +128,7 @@ class Index extends Component {
         if (app.authLoading) return <Res {...this.props} />;
         if(this.state.backPage) return <Redirect to="/login" />
         return(
-          <div className="loginBox custom">
-             <div className="custom-pad-0-25 mt80">
-                <Reg {...this.props} onSubmit={this.submit.bind(this)} />
-             </div>
-             
-          </div>
+            <Reg {...this.props} onSubmit={this.submit.bind(this)} />
         );
     }
 }

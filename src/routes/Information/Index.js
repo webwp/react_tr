@@ -31,28 +31,28 @@ class Information extends Component{
     render(){
         const {list} = this.props;
         const {news} = list;
-        const someThing = {canGoBack:false,_bool:false}
+        const someThing = {canGoBack:false}
         
         if(news == null){
           return false;
         }
-        console.log(news)
+        const other = {mode:'light'};
         return (
             
-              <Page title='资讯列表' history={this.props.history} someThing={someThing}>  
-                <div className="Shortcut contents">
+              <Page title='资讯列表' history={this.props.history} someThing={someThing} _bool={true} others={other}>  
+                <div className="Shortcut contents" style={{height:'100%'}}>
                 <ul className="custom_list">
                 {news != null ?
                   news.data.data.map((item,key)=>(
                     <li key={key}>
                       <Link to={'information/detail/'+item.id}>
                         <img 
-                            src={item.image} width="64" height="64" 
+                            src={item.image} width="90" height="70" 
                             onLoad={this.handleImageLoaded.bind(this)}
                             onError={(el) => Config.handleImageErrored(el)}
                         />
-                        <div style={{marginLeft:'80px'}}>
-                          <h4>{item.title}</h4>
+                        <div style={{marginLeft:'105px'}}>
+                          <h4 className="custom-title-set">{item.title}资讯列表资讯列表资讯列表资讯列表资讯列表资讯列表</h4>
                           <p>{item.publish_time}</p>
                         </div>
                       </Link>
