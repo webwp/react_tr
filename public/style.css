@@ -226,7 +226,7 @@ white-space: nowrap;
 
 
 .custom .am-tabs {display:inline-block!important } 
-.custom .am-result { padding:25px 15px; overflow: hidden; background: #44cf3a}
+.custom .am-result { padding:25px 15px; overflow: hidden; background: #44cf3a url(image/user/me_bg.png) center center no-repeat; background-size: 100%}
 .custom .am-result .am-result-pic { float: left;    width: 60px;
     height: 60px;margin:0 10px 0 10px}
 .custom .am-result-title {font-size: 16px!important; color:#fff!important}
@@ -246,7 +246,7 @@ strong , h4 {font-weight: normal !important;}
 .custom_list { border-top: 1px solid #f2f2f2; margin: 0 -10px}
 .custom_list li {border-bottom: 1px solid #f1f1f1; padding: 10px; overflow: hidden;}
 .custom_list li:last-child {border-bottom: none}
-.custom_list li img {float: left;}
+.custom_list li img {float: left; border-radius: 2px}
 .custom_list li>div {margin-left: 90px; overflow: hidden; padding:10px 0; }
 .custom_list li>div h4 { font-weight: normal;}
 .custom_list li div p {color:#ccc; margin-top: 5px; font-size: 14px /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif*/}
