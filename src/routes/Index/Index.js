@@ -26,17 +26,19 @@ class Index extends Component {
     }
     
     render(){
+        const { page } = this.props;
+        const { Applications } = page;
         return (
             <div style={{background:"#f6f6f6"}}>
                 <Search />
                 <Ad />
-                <IndexGrid />
+                <IndexGrid Applications={Applications} />
                 {/* 服务提醒需要登录才能访问 */}
                 <Message {...this.props}/>
 
                 <Carousel />
                 
-                <Shortcut />
+                <Shortcut Applications={Applications} />
                 {/* 资讯 */}
                 {this.props.index.news==null ? '' : <Information {...this.props.index.news} />}
                 

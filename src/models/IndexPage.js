@@ -1,3 +1,4 @@
+import { queryList } from "../services/Applications";
 import { routerRedux,Redirect,Switch } from 'dva/router';
 import { Toast } from 'antd-mobile';
 
@@ -8,7 +9,8 @@ export default {
         namespace: 'indexPage',
     
         state: {
-            selectedTab:''
+            selectedTab:'',
+            Applications:null,
         },
     
         subscriptions: {
@@ -16,10 +18,24 @@ export default {
                 dispatch({
                     type: 'getTab',
                 });
+                dispatch({
+                    type:'queryList'
+                })
             },
         },
     
         effects: {
+            *queryList({ payload }, { call, put }){
+                const response = yield call(queryList,payload);
+                const nPayload = {};
+                if(response.code === 0){
+                    nPayload.Applications = response.data;
+                }
+                yield put({
+                    type:'save',
+                    payload:{...nPayload}
+                })
+            },
             *tab({ payload }, { call, put }){
                 localStorage.setItem('TAB',JSON.stringify(payload));
                 yield put({
@@ -34,6 +50,7 @@ export default {
                     payload:nPayload
                 })
             },
+            
         },
     
         reducers: {
