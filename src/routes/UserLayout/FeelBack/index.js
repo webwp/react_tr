@@ -17,10 +17,12 @@ class Index extends Component{
         });
     }
     render(){
-        const page = {title:'意见反馈',history:this.props.history};
+        const page = {title:'意见反馈',history:this.props.history},
+              others = {mode:'light'};
+        
         const { getFieldProps } = this.props.form;
         return(
-            <Page {...page}>
+            <Page {...page} _bool={true} others={others}>
                 <div className='content'>
                     <List renderHeader={() => '您的反馈是我们前进最大的动力'}>
                     <TextareaItem
@@ -33,7 +35,7 @@ class Index extends Component{
                     </List>
                     <WhiteSpace />
                     <List style={{padding:"12.5px"}}>
-                        <Button type="primary" onClick={this.onSubmit}>提交</Button>
+                        <Button type="primary" className='am-button-green' onClick={this.onSubmit}>提交</Button>
                     </List>
                 </div>
             </Page>

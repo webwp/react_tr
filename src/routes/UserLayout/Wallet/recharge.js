@@ -17,7 +17,13 @@ if (isIPhone) {
 class Recharge extends Component{
     
     showActionSheet = () => {
-        const BUTTONS = [<div className="txt-l"><span style={{paddingTop:'10px'}}><img src='image/balance/boc.png'/></span>中国银行储蓄卡(1716)<i className="iconfont icon-hook right"></i></div>, 'Operation2', 'Operation2', 'Delete', 'Cancel'];
+        const BUTTONS = [
+            <div className="txt-l" style={{padding:'0 10px'}}><img style={{verticalAlign: 'middle'}} src='image/balance/boc.png'/>中国银行储蓄卡(1716)<i className="iconfont icon-dagou right" style={{fontSize:'12px',color:'#green'}}></i></div>, 
+            'Operation2', 
+            'Operation2', 
+            'Delete', 
+            'Cancel'
+        ];
         ActionSheet.showActionSheetWithOptions({
           options: BUTTONS,
           cancelButtonIndex: BUTTONS.length - 1,
@@ -37,7 +43,7 @@ class Recharge extends Component{
         const others = {mode:'light'};
         const { getFieldProps } = this.props.form;
         return(
-           <Page title="我的二维码" history={history} others={others} _bool={true} >
+           <Page title="余额充值" history={history} others={others} _bool={true} >
                 <div >
                     <div style={{padding:'0 15px'}}>
                     <List renderHeader={() => '充值金额'} className="custom-form custom-form-input">

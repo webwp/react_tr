@@ -40,7 +40,7 @@ class Index extends Component{
         //Page 设置
         const page = {canGoBack:true,mode:'light'}
         return(
-            <Page title="设置" others={page} history={history}>
+            <Page title="设置" others={page} history={history} _bool={true}>
                 <WhiteSpace />
                 <List className="my-list set-list-img">
                     <Item extra={<i className="iconfont icon-iconfontzhizuobiaozhun023104 fz-general-sm" alt="" />} multipleLine onClick={() => {}}>

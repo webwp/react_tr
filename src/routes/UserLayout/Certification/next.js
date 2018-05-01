@@ -18,15 +18,14 @@ class Index extends Component{
     }
     //获取手机验证码
     getCode = (e)=>{
-        
-        const phone = this.props.user.userInfo.phone,
-              { dispatch } = this.props;
-        if( typeof phone != "undefined" || phone != null){
+        const phone = this.props.form.getFieldProps('phone').value;
+        console.log(phone); 
+        if( typeof phone != 'undefined' && phone != null){
           
-            dispatch({
-                type:'setting/code',
-                payload:{phone:phone,type:2}
-            })
+            // dispatch({
+            //     type:'setting/code',
+            //     payload:{phone:phone,type:2}
+            // })
             Toast.loading();
             let _this = this,times = 60;
             let index = setInterval(function(){

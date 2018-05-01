@@ -6,9 +6,10 @@ import Page from '../../../components/Page'
 
 class Index extends Component {
     render(){
+        const others = {mode:'light'}
         return(
             <div>
-                <Page title="关于我们" history={this.props.history}>
+                <Page title="关于我们" history={this.props.history} _bool={true} others={others}>
                 {/* <div className="custom-nav-sibling-top"> */}
                      <Detail />
                 {/* </div> */}

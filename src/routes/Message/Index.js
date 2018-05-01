@@ -19,7 +19,7 @@ class Index extends Component{
             return false;
         }
         return (
-            <Page title="服务提醒" history={history} others={page}>
+            <Page title="服务提醒" history={history} others={page} _bool={true}>
             <List className="my-list">
                 {(message.data.data).length!=0?message.data.data.map((item,index)=>(
                     <Item align="top" thumb={item.uri} multipleLine>

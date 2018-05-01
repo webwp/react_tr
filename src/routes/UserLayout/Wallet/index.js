@@ -26,7 +26,7 @@ class Index extends Component{
             return false;
         }
         return(
-           <Page title="我的二维码" history={history} others={others} _bool={true} >
+           <Page title="我的钱包" history={history} others={others} _bool={true} >
                 <div style={{textAlign:'center',marginTop:'50px'}}>
                     <h4 className="fz-small-md">账户余额</h4>
                     <WhiteSpace />
