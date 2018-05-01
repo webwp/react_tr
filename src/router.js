@@ -71,7 +71,7 @@ function RouterConfig({ history , app }) {
       component: () => import('./routes/UserLayout/Certification/'),
     },
     {
-      path: '/user/next',  //用户认证
+      path: '/user/certification/next',  //用户认证
       component: () => import('./routes/UserLayout/Certification/next'),
     },
     {
