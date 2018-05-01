@@ -19,8 +19,8 @@ class Messages extends Component{
         }
         return (
             <div className="mt10 contents" style={{paddingTop:'10px'}}>
-                 <div className="left">
-                     <img src='image/home/msg.png' />
+                 <div className="left" style={{paddingTop:'5px'}}>
+                     <img src='image/home/msg@3x.png' style={{width:'41.5px',height:'32px'}}/>
                  </div>
                  <div className="right" style={{"lineHeight":"55px",'color':'#666'}}>
                      <a href="#/message"><i className="iconfont icon-gengduo fz-sm"></i></a>
