@@ -63,7 +63,7 @@ class TabBarExample extends Component {
             }}
             data-seed="logId"
           >
-          {this.renderContent(<Index />)}
+          {this.renderContent(<Index {...this.props}/>)}
           </TabBar.Item>
           <TabBar.Item
             title='扫码/支付'
