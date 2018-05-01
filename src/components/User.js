@@ -74,7 +74,7 @@ class Index extends Component{
                         <i className="icon-iconfontzhizuobiaozhun023104 iconfont" style={{color:'#fff'}}></i>
                     </div>
                     <div className="am-result-title">{user.userInfo!=null?user.userInfo.phone:"游客"}</div>
-                    <div className="am-result-message">{user.userInfo!=null?<Link to='/' inline size="small">未实名认证</Link>:<Link to='/login'>登录/注册</Link>}</div>
+                    <div className="am-result-message">{user.userInfo!=null?<Link to='/' size="small">未实名认证</Link>:<Link to='/login'>登录/注册</Link>}</div>
                 </div>
 
                 <Grid
