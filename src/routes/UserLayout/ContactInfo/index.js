@@ -32,7 +32,8 @@ class Index extends Component{
        })
    }
    //确认删除事件
-   _onHandleDelete = (id) => {
+   _onHandleDelete = (id,e) => {
+       e.preventDefault() || e.stopPropagation();
        const { dispatch } = this.props;
        dispatch({
            type:'contactInfo/del',
@@ -44,7 +45,7 @@ class Index extends Component{
         e.preventDefault() || e.stopPropagation();
         alert('删除', '确定删除常用联系人?', [
             { text: '取消', onPress: () => console.log('cancel') },
-            { text: '确定', onPress: () => this._onHandleDelete(id) },
+            { text: '确定', onPress: () => this._onHandleDelete(id,e) },
         ])
    }
    //页面跳转
@@ -63,9 +64,9 @@ class Index extends Component{
             arr = dataList.data;
         }
         const other = {mode:'light'}
-        const right = [<i onClick={this.onEditor}>{this.state.status == 'none' ? '编辑':'完成'}</i>];
+        const right = [<span className="txt-color-big" onClick={this.onEditor}>{this.state.status == 'none' ? '编辑':'完成'}</span>];
         return(
-            <Page title="常用联系人信息" history={history} right={right} others={other}  key='pages'>
+            <Page title="常用联系人信息" history={history} right={right} others={other}  key='pages' _bool={true}>
                 <div>
                 <List className="my-list">
                     {(arr.length) == 0 ? <p className="txt-c txt-color-assist" style={{lineHeight:'120px'}}>没有相关联系人</p> :arr.map((item,index)=>(
@@ -76,7 +77,7 @@ class Index extends Component{
                             onClick={() => this.onJump('/user/contactinfo/editor/'+item.id)}
                             // platform="android"
                         >
-                        <i className='iconfont icon-shanchu left' onClick={(e) => this.onHandleDelete(item.id,e)} style={{display:this.state.status}}></i>
+                        <i className='iconfont icon-shanchu left txt-color-warn del-btn' onClick={(e) => this.onHandleDelete(item.id,e)} style={{display:this.state.status}}></i>
                             {item.realname}<Brief>手机号码  {item.phone} <br /> {this.plusXing(item.id_no,4,4)}</Brief>
                         </Item>
                     ))}

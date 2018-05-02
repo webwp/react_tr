@@ -19,7 +19,6 @@ class Index extends Component{
     //获取手机验证码
     getCode = (e)=>{
         const phone = this.props.form.getFieldProps('phone').value;
-        console.log(phone); 
         if( typeof phone != 'undefined' && phone != null){
           
             // dispatch({

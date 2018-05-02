@@ -84,7 +84,7 @@ class Index extends Component{
         const { getFieldProps, getFieldError } = this.props.form;
         const right = [<i onClick={this.onSubmit}>保存</i>];
         return (
-            <Page title="新增常用游客" history={history} right={right}>
+            <Page title="新增常用游客" history={history} right={right} _bool={true}>
                  <div className=' custom-form'>
                        
                         <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>

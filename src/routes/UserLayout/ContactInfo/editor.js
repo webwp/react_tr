@@ -112,9 +112,11 @@ class Index extends Component{
         let errors;
         const { value } =this.state;
         const { getFieldProps, getFieldError,setFieldsValue } = this.props.form;
-        const right = [<i onClick={this.onSubmit}>保存</i>];
+        const right = [<span className="txt-color-big" onClick={this.onSubmit}>保存</span>];
+
+        const others = {mode:'light'}
         return (
-            <Page title="修改常用联系人" history={history} right={right}>
+            <Page title="修改常用联系人" history={history} right={right} _bool={true} others={others}>
                  <div className='custom-form'>
                        
                         <NoticeBar mode="closable" icon={<Icon type="check-circle-o" size="xxs" />}>
