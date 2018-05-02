@@ -62,20 +62,8 @@ class Index extends Component{
             }
         ]
         return(
-            <div className="result-example custom custom-bg">
-                <div className="am-result">
-                    <div className='custom-user'>
-                        <Badge text={1} className='left'>
-                            <i  onClick={()=>this.authCheck('/message')} className="iconfont icon-xiaoxi fz-general-md"></i>
-                        </Badge>
-                        <span className='right' onClick={()=>{this.authCheck('/user/set')}}><i className="iconfont icon-setup"></i></span>
-                    </div>
-                    <div className="am-result-pic">
-                        <i className="icon-iconfontzhizuobiaozhun023104 iconfont" style={{color:'#fff'}}></i>
-                    </div>
-                    <div className="am-result-title">{user.userInfo!=null?user.userInfo.phone:"游客"}</div>
-                    <div className="am-result-message">{user.userInfo!=null?<Link to='/' size="small">未实名认证</Link>:<Link to='/login'>登录/注册</Link>}</div>
-                </div>
+            <div>
+                
 
                 <Grid
                     data={data}
