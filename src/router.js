@@ -19,7 +19,7 @@ function RouterConfig({ history , app }) {
     {
       path: '/',
       //models: () => [require('./models/IndexPage').default],
-      models: () => [import('./models/IndexPage'),import('./models/Index'),import('./models/Message'),import('./models/Applications')],
+      models: () => [import('./models/IndexPage'),import('./models/Index'),import('./models/Remind'),import('./models/Applications'),import('./models/Notifications')],
       component: () => import('./routes/IndexPage'),
     },
     {
@@ -30,7 +30,7 @@ function RouterConfig({ history , app }) {
     {
       path: '/user',
       //models: () => [require('./models/User').default],
-      //models: () => [import('./models/User')],
+      // models: () => [import('./models/Notifications')],
       component: () => import('./routes/UserLayout/User'),
     },
     {
@@ -61,6 +61,16 @@ function RouterConfig({ history , app }) {
       path: '/user/Contactinfo/editor/:id',  //编辑常用联系人
       models: () => [require('./models/ContactInfo').default],
       component: () => import('./routes/UserLayout/ContactInfo/editor'),
+    },
+    {
+      path: '/user/notifications',  //消息
+      models: () => [import('./models/Notifications')],      
+      component: () => import('./routes/UserLayout/Notifications'),
+    },
+    {
+      path: '/user/notifications/:id',  //消息
+      models: () => [import('./models/Notifications')],      
+      component: () => import('./routes/UserLayout/Notifications'),
     },
     {
       path: '/user/about',  //关于我们
@@ -146,9 +156,9 @@ function RouterConfig({ history , app }) {
       component: () => import('./routes/Information/Detail'),
     },
     {
-      path: '/message',
-      models: () => [import('./models/Message')],
-      component: () => import('./routes/Message/Index'),
+      path: '/remind',
+      models: () => [import('./models/Remind')],
+      component: () => import('./routes/Remind/Index'),
     },
     {
       path: '/guide',
