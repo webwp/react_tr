@@ -21,6 +21,7 @@ ul,li,p ,h1,h2,h3,h4,h5,h6,h7{padding: 0; margin: 0}
 .bg-color-big {background: #39bc30!important}
 /*小面积使用 用于特别需要强调和突出的按钮*/
 .bg-color-sm  {background: #00b839!important}
+.txt-color-big {color: #39bc30!important}
 /*小面积使用 用于特别需要强调和突出的文字及描边*/
 .txt-color-warn {color:#f85b58!important}
 /*用于重要级文字信息、内容标题信息*/
@@ -153,11 +154,16 @@ a {color:#555555; display: block}
 
 .padding-left-74 {padding-left: 74px;padding-right: 25px; }
 
-.ulList {font-size: 14px; line-height: 20px; margin-top: 5px;}
+.ulList {font-size: 12px; line-height: 20px; margin-top: 5px;}
 .ulList li {
+    
+list-style-type: disc;
+}
+.ulList li span {
     overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inherit;
 }
 
 .Shortcut .sub-title{position: relative; text-indent: 1em; padding: 10px 0}
@@ -579,3 +585,23 @@ display: -webkit-box;
     flex-basis: 60%!important;
     font-size: 14px!important;
 }
+.Shortcut-img {
+    width: 48px; height: 48px;float: right;
+}
+@media screen and (min-width: 320px) and (max-width: 360px){
+  .Shortcut-img {
+    width: 42px; height: 42px;
+  }
+}
+@media screen and (max-width: 320px) {
+    .Shortcut-img {
+      width: 25px; height: 25px;
+    }
+  }
+
+
+  .del-btn {
+      margin-top: 15px;
+      margin-right: 15px;
+      font-size: 28px!important;
+  }
