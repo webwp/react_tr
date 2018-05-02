@@ -66,7 +66,7 @@ class Index extends Component{
         const other = {mode:'light'}
         const right = [<span className="txt-color-big" onClick={this.onEditor}>{this.state.status == 'none' ? '编辑':'完成'}</span>];
         return(
-            <Page title="常用联系人信息" history={history} right={right} others={other}  key='pages' _bool={true}>
+            <Page title="常用联系人信息" history={history} right={right} others={other}  key='pages' _bool={true} borderBottom={true}>
                 <div>
                 <List className="my-list">
                     {(arr.length) == 0 ? <p className="txt-c txt-color-assist" style={{lineHeight:'120px'}}>没有相关联系人</p> :arr.map((item,index)=>(

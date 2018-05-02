@@ -26,6 +26,7 @@ export default {
     
         effects: {
             *queryList({ payload }, { call, put }){
+                
                 const response = yield call(queryList,payload);
                 const nPayload = {};
                 if(response.code === 0){
