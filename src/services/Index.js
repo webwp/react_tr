@@ -21,7 +21,7 @@ export async function getDetail (params) {
 }
 
 //获取服务提醒
-export async function getMessage (params) {
+export async function getReminds (params) {
 	return request(publicProInterface.requestURL+'/client/message/remind', {
 		method: 'get',
 		body: params
