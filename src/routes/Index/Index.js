@@ -3,7 +3,7 @@ import { connect } from 'dva'
 
 import Search from './Search';
 import IndexGrid from './IndexGrid';
-import Message from './Message';
+import Remind from './Remind';
 import Ad from './Ad';
 import Shortcut from './Shortcut'
 import Information from './Information'
@@ -34,7 +34,7 @@ class Index extends Component {
                 <Ad />
                 <IndexGrid Applications={Applications} />
                 {/* 服务提醒需要登录才能访问 */}
-                <Message {...this.props}/>
+                <Remind {...this.props}/>
 
                 <Carousel />
                 

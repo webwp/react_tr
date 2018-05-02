@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { connect } from 'dva';
+import { Link } from 'dva/router';
 import { routerRedux,Redirect,Switch } from 'dva/router';
 import { Grid } from 'antd-mobile';
 
@@ -15,7 +16,7 @@ class IndexGrid extends Component{
                 nums++;
             }
         })
-        const more = {icon:(<a href=''><img src='image/home/Moreapplications@2x.png' style={{height:'49px',width:'49px'}}/></a>),text:'更多'}
+        const more = {icon:(<Link to='/moreapp'><img src='image/home/Moreapplications@2x.png' style={{height:'49px',width:'49px'}}/></Link>),text:'更多'}
         data.push(more);
         return (
             <Grid className='custom_grid_other' data={data} hasLine={false}  onClick={_el => console.log(_el)} />

@@ -16,7 +16,7 @@ class Shortcut extends Component{
         let data = [];
         dataSource.map((item,index)=>{
             if(item.category_id ===3 && nums<4){
-                let res = {img:item.icon,title:item.label,txt:'提前计划 不费时间'}
+                let res = {img:item.icon,title:item.label,txt:item.remark}
                 data.push(res);
                 nums++;
             }
@@ -32,7 +32,7 @@ class Shortcut extends Component{
                                 <strong style={{fontWeight:'normal'}}>{dataItem.title}</strong>
                                 <p className="font-text-12">{dataItem.txt}</p>
                             </div>
-                            <img src={dataItem.img}  style={{ width: '48px', height: '48px',"float":'right' }} alt="" onError={(el)=>Config.handleImageErrored(el)} />
+                            <img src={dataItem.img} className="Shortcut-img" alt="" onError={(el)=>Config.handleImageErrored(el)} />
                             
                         </div>
                 )}
