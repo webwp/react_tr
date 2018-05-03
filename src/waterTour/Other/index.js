@@ -54,8 +54,9 @@ const PlaceHolder = ({ className = '', ...restProps }) => (
 class Index extends Component{
     render(){
         const { history } = this.props;
+        const others = {mode:'light'};
         return(
-           <Page title="我的订单" history={history}>
+           <Page title="我的订单" history={history} _bool={true} others={others}>
                 <div  className="flex-container" style={{padding:'15px'}}>
                     <Flex>
                         <Flex.Item><PlaceHolder text={'我的船票订单'} url="http://" /></Flex.Item>

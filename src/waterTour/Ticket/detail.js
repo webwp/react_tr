@@ -22,8 +22,9 @@ class Detail extends Component {
     render(){
         const { history } = this.props;
         const someThing = {canGoBack:true}
+        const others = {mode:'light'};
         return(
-            <Page title='预订船票' history={history} someThing={someThing}>
+            <Page title='预订船票' history={history} someThing={someThing} _bool={true} others={others}>
                  <Banner />
                  <List className="custom-detail-map">
                  <h3 className="detail-title">民生码头</h3>

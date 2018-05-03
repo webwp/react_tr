@@ -14,7 +14,7 @@ class Index extends Component{
         const right = <i className="iconfont icon-xiaoxi"></i>;
         const someThing = {canGoBack:false}
         return(
-            <Page title='水上码头' right={right} others={other} someThing={someThing} history={history}>
+            <Page title='水上码头' right={right} others={other} someThing={someThing} history={history} _bool={true}>
                 <Ad />
                 <IndexGrid />
                 <WhiteSpace />

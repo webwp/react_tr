@@ -26,8 +26,10 @@ class Index extends Component{
             }
         ];
         const someThing = {canGoBack:true}
+
+        const others = {mode:'light'};
         return(
-          <Page title="始发码头" history={history} someThing={someThing}>
+          <Page title="始发码头" history={history} someThing={someThing} _bool={true} others={others}>
               <h4>请选择始发码头</h4>
               {data.map((item,index)=>(
                 <Link to={'/water/ticket/'+item.id} style={{padding:'12px'}} key={index}>

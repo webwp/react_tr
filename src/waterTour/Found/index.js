@@ -44,8 +44,10 @@ const data= [
 class Index extends Component{
     render(){
         const { history } = this.props;
+
+        const others = {mode:'light'};
         return(
-           <Page title="发现" history={history}>
+           <Page title="发现" history={history} _bool={true} others={others}>
                 {/* banner 广告图 */}
                 <Banner />
                 <List className="custom-list">
